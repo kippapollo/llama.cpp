@@ -34,6 +34,7 @@ static bool should_stop() {
     return g_is_interrupted.load();
 }
 
+
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (_WIN32)
 static void signal_handler(int) {
     if (g_is_interrupted.load()) {

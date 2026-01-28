@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cfloat>
+#include <cstdio>
 #include <cstring>
 #include <cmath>
 #include <functional>
@@ -472,6 +473,10 @@ llama_model::llama_model(const llama_model_params & params) : params(params), pi
 llama_model::~llama_model() {
     for (auto * lora : loras) {
         delete lora;
+    }
+
+    if (!decrypted_model_tmp_path.empty()) {
+        std::remove(decrypted_model_tmp_path.c_str());
     }
 }
 

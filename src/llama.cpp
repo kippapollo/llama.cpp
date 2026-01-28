@@ -13,6 +13,8 @@
 #include "ggml.h"
 #include "ggml-backend.h"
 
+#include "../common/model-encryption.h"
+
 #include "../common/forced-system-prompt.h"
 
 #include <algorithm>
@@ -20,6 +22,7 @@
 #include <cinttypes>
 #include <cstddef>
 #include <cstdint>
+#include <cstdlib>
 #include <cstdio>
 #include <cstring>
 #include <ctime>
@@ -910,6 +913,50 @@ static struct llama_model * llama_model_load_from_file_impl(
     }
 
     llama_model * model = new llama_model(params);
+
+    // Enforce encrypted model files only.
+    // The passcode must be provided via environment variable:
+    //   LLAMA_MODEL_PASSCODE=dddd-dddd-dddd-dddd-dddd
+    {
+        if (!common_model_is_encrypted_file(path_model)) {
+            LLAMA_LOG_ERROR("%s: refusing to load non-encrypted model: %s\n", __func__, path_model.c_str());
+            llama_model_free(model);
+            return nullptr;
+        }
+
+        const char * passcode_env = std::getenv("LLAMA_MODEL_PASSCODE");
+        if (!passcode_env || !*passcode_env) {
+            LLAMA_LOG_ERROR("%s: missing LLAMA_MODEL_PASSCODE for encrypted model\n", __func__);
+            llama_model_free(model);
+            return nullptr;
+        }
+
+        std::string err;
+        const std::string tmp = common_model_decrypt_to_temp_file(path_model, passcode_env, err);
+        if (tmp.empty()) {
+            LLAMA_LOG_ERROR("%s: failed to decrypt model: %s\n", __func__, err.c_str());
+            llama_model_free(model);
+            return nullptr;
+        }
+
+        model->decrypted_model_tmp_path = tmp;
+
+        // Use the decrypted temp path for the actual load.
+        splits.clear();
+        const int status = llama_model_load(tmp, splits, *model, params);
+        GGML_ASSERT(status <= 0);
+        if (status < 0) {
+            if (status == -1) {
+                LLAMA_LOG_ERROR("%s: failed to load model\n", __func__);
+            } else if (status == -2) {
+                LLAMA_LOG_INFO("%s: cancelled model load\n", __func__);
+            }
+            llama_model_free(model);
+            return nullptr;
+        }
+
+        return model;
+    }
 
     // create list of devices to use with this model
     if (params.devices) {

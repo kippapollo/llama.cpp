@@ -426,6 +426,10 @@ struct llama_model {
 
     std::string name = "n/a";
 
+    // If a model is decrypted from an encrypted container, this holds the
+    // path to the temporary plaintext GGUF file to delete on destruction.
+    std::string decrypted_model_tmp_path;
+
     llama_hparams hparams = {};
     llama_vocab   vocab;
 

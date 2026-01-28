@@ -4,6 +4,18 @@ llama_add_compile_flags()
 # libraries
 #
 
+# llama_crypto (used by both llama + tools)
+
+add_library(llama_crypto STATIC
+    ../common/model-encryption.cpp
+)
+
+target_include_directories(llama_crypto PUBLIC ../common ../examples/gguf-hash/deps)
+
+if (BUILD_SHARED_LIBS)
+    set_target_properties(llama_crypto PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif()
+
 # llama
 
 add_library(llama
@@ -150,6 +162,8 @@ set_target_properties(llama PROPERTIES
 
 target_include_directories(llama PRIVATE .)
 target_include_directories(llama PUBLIC ../include)
+
+target_link_libraries(llama PUBLIC llama_crypto)
 target_compile_features   (llama PRIVATE cxx_std_17) # don't bump
 
 target_link_libraries(llama PUBLIC ggml)
