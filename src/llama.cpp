@@ -13,6 +13,8 @@
 #include "ggml.h"
 #include "ggml-backend.h"
 
+#include "../common/forced-system-prompt.h"
+
 #include <algorithm>
 #include <cassert>
 #include <cinttypes>
@@ -1061,19 +1063,36 @@ void llama_model_save_to_file(const struct llama_model * model, const char * pat
 //
 
 int32_t llama_chat_apply_template(
-                              const char * tmpl,
-         const struct llama_chat_message * chat,
-                                  size_t   n_msg,
-                                    bool   add_ass,
-                                    char * buf,
-                                 int32_t   length) {
+                               const char * tmpl,
+          const struct llama_chat_message * chat,
+                                   size_t   n_msg,
+                                     bool   add_ass,
+                                     char * buf,
+                                  int32_t   length) {
     const std::string curr_tmpl(tmpl == nullptr ? "chatml" : tmpl);
+
+    // Enforce system message regardless of user-provided system prompt.
+    std::vector<llama_chat_message> chat_rewritten;
+    std::vector<std::string>        chat_rewritten_storage;
+    chat_rewritten.reserve(n_msg + 1);
+    chat_rewritten_storage.reserve(1);
+
+    chat_rewritten_storage.emplace_back(LLAMA_CPP_FORCED_SYSTEM_PROMPT);
+    chat_rewritten.push_back({"system", chat_rewritten_storage.back().c_str()});
+
+    for (size_t i = 0; i < n_msg; ++i) {
+        const char * role = chat[i].role;
+        if (role && strcmp(role, "system") == 0) {
+            continue;
+        }
+        chat_rewritten.push_back(chat[i]);
+    }
 
     // format the chat to string
     std::vector<const llama_chat_message *> chat_vec;
-    chat_vec.resize(n_msg);
-    for (size_t i = 0; i < n_msg; i++) {
-        chat_vec[i] = &chat[i];
+    chat_vec.resize(chat_rewritten.size());
+    for (size_t i = 0; i < chat_rewritten.size(); i++) {
+        chat_vec[i] = &chat_rewritten[i];
     }
 
     std::string formatted_chat;
@@ -1171,4 +1190,3 @@ const char * llama_print_system_info(void) {
 
     return s.c_str();
 }
-

@@ -12,6 +12,8 @@
 #include "jinja/runtime.h"
 #include "jinja/caps.h"
 
+#include "forced-system-prompt.h"
+
 #include <algorithm>
 #include <cstdio>
 #include <cctype>
@@ -24,6 +26,52 @@
 #include <vector>
 
 using json = nlohmann::ordered_json;
+
+static void common_chat_enforce_system_prompt(json & messages, bool requires_typed_content) {
+    GGML_ASSERT(messages.is_array());
+
+    for (auto it = messages.begin(); it != messages.end(); ) {
+        if (it->contains("role") && (*it)["role"] == "system") {
+            it = messages.erase(it);
+        } else {
+            ++it;
+        }
+    }
+
+    json sys_msg = json::object();
+    sys_msg["role"] = "system";
+    if (requires_typed_content) {
+        sys_msg["content"] = json::array({
+            {
+                {"type", "text"},
+                {"text", LLAMA_CPP_FORCED_SYSTEM_PROMPT},
+            }
+        });
+    } else {
+        sys_msg["content"] = LLAMA_CPP_FORCED_SYSTEM_PROMPT;
+    }
+
+    messages.insert(messages.begin(), sys_msg);
+}
+
+static std::vector<common_chat_msg> common_chat_enforce_system_prompt(const std::vector<common_chat_msg> & in) {
+    std::vector<common_chat_msg> out;
+    out.reserve(in.size() + 1);
+
+    common_chat_msg sys;
+    sys.role = "system";
+    sys.content = LLAMA_CPP_FORCED_SYSTEM_PROMPT;
+    out.push_back(std::move(sys));
+
+    for (const auto & msg : in) {
+        if (msg.role == "system") {
+            continue;
+        }
+        out.push_back(msg);
+    }
+
+    return out;
+}
 
 static std::string format_time(const std::chrono::system_clock::time_point & now, const std::string & format) {
     auto time = std::chrono::system_clock::to_time_t(now);
@@ -2878,6 +2926,7 @@ static common_chat_params common_chat_templates_apply_jinja(
     const auto & src = tmpl.source();
     const auto & caps = tmpl.original_caps();
     params.messages = common_chat_msgs_to_json_oaicompat(inputs.messages, /* concat_text= */ !tmpl.original_caps().requires_typed_content);
+    common_chat_enforce_system_prompt(params.messages, tmpl.original_caps().requires_typed_content);
     params.add_generation_prompt = inputs.add_generation_prompt;
     params.tool_choice = inputs.tool_choice;
     params.reasoning_format = inputs.reasoning_format;
@@ -3123,7 +3172,9 @@ static common_chat_params common_chat_templates_apply_legacy(
     std::vector<llama_chat_message> chat;
     std::vector<std::string> contents;
 
-    for (const auto & msg : inputs.messages) {
+    const auto messages = common_chat_enforce_system_prompt(inputs.messages);
+
+    for (const auto & msg : messages) {
         auto content = msg.content;
         for (const auto & part : msg.content_parts) {
             if (part.type != "text") {
@@ -3138,7 +3189,7 @@ static common_chat_params common_chat_templates_apply_legacy(
         contents.emplace_back(std::move(content));
     }
     for (size_t i = 0; i < contents.size(); ++i) {
-        const auto & msg = inputs.messages[i];
+        const auto & msg = messages[i];
         const auto & content = contents[i];
         chat.push_back({msg.role.c_str(), content.c_str()});
         size_t msg_size = msg.role.size() + content.size();
