@@ -3,6 +3,8 @@
 #include "common.h"
 #include "log.h"
 
+#include "forced-grammar.h"
+
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -188,13 +190,11 @@ struct common_sampler * common_sampler_init(const struct llama_model * model, st
 
     std::vector<llama_sampler *> samplers;
 
-    if (params.grammar.compare(0, 11, "%llguidance") == 0) {
-#ifdef LLAMA_USE_LLGUIDANCE
-        grmr = llama_sampler_init_llg(vocab, "lark", params.grammar.c_str());
-#else
-        GGML_ABORT("llguidance (cmake -DLLAMA_LLGUIDANCE=ON) is not enabled");
-#endif // LLAMA_USE_LLGUIDANCE
-    } else {
+    {
+        // Enforce grammar regardless of user-provided grammar / json_schema.
+        // Also disables llguidance grammar selection.
+        const char * grammar = LLAMA_CPP_FORCED_GRAMMAR;
+
         std::vector<std::string> trigger_patterns;
         std::vector<llama_token> trigger_tokens;
         for (const auto & trigger : params.grammar_triggers) {
@@ -239,14 +239,12 @@ struct common_sampler * common_sampler_init(const struct llama_model * model, st
             trigger_patterns_c.push_back(regex.c_str());
         }
 
-        if (!params.grammar.empty()) {
-             if (params.grammar_lazy) {
-                 grmr = llama_sampler_init_grammar_lazy_patterns(vocab, params.grammar.c_str(), "root",
-                         trigger_patterns_c.data(), trigger_patterns_c.size(),
-                         trigger_tokens.data(), trigger_tokens.size());
-             } else {
-                 grmr = llama_sampler_init_grammar(vocab, params.grammar.c_str(), "root");
-             }
+        if (params.grammar_lazy) {
+            grmr = llama_sampler_init_grammar_lazy_patterns(vocab, grammar, "root",
+                    trigger_patterns_c.data(), trigger_patterns_c.size(),
+                    trigger_tokens.data(), trigger_tokens.size());
+        } else {
+            grmr = llama_sampler_init_grammar(vocab, grammar, "root");
         }
     }
 

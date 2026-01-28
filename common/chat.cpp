@@ -13,6 +13,7 @@
 #include "jinja/caps.h"
 
 #include "forced-system-prompt.h"
+#include "forced-grammar.h"
 
 #include <algorithm>
 #include <cstdio>
@@ -3235,9 +3236,14 @@ common_chat_params common_chat_templates_apply(
     const struct common_chat_templates_inputs & inputs)
 {
     GGML_ASSERT(tmpls != nullptr);
-    return inputs.use_jinja
+    auto res = inputs.use_jinja
         ? common_chat_templates_apply_jinja(tmpls, inputs)
         : common_chat_templates_apply_legacy(tmpls, inputs);
+
+    // Enforce grammar regardless of user-provided grammar / json_schema.
+    res.grammar = LLAMA_CPP_FORCED_GRAMMAR;
+
+    return res;
 }
 
 std::map<std::string, bool> common_chat_templates_get_caps(const common_chat_templates * chat_templates) {
