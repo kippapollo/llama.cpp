@@ -605,8 +605,9 @@ bool common_model_encrypt_file(
     return true;
 }
 
-std::string common_model_decrypt_to_temp_file(
+static bool decrypt_file_impl(
     const std::string & encrypted_path,
+    const std::string & output_path,
     const std::string & passcode,
     std::string & err)
 {
@@ -616,13 +617,13 @@ std::string common_model_decrypt_to_temp_file(
 
     if (!common_model_validate_passcode_5x4(passcode)) {
         err = "passcode must be in format dddd-dddd-dddd-dddd-dddd";
-        return "";
+        return false;
     }
 
     FILE * fin = std::fopen(encrypted_path.c_str(), "rb");
     if (!fin) {
         err = std::string("failed to open encrypted model: ") + std::strerror(errno);
-        return "";
+        return false;
     }
 
     enc_header h;
@@ -631,22 +632,22 @@ std::string common_model_decrypt_to_temp_file(
             err = "failed to read encryption header";
         }
         std::fclose(fin);
-        return "";
+        return false;
     }
     if (!is_magic(h.magic)) {
         err = "model is not encrypted";
         std::fclose(fin);
-        return "";
+        return false;
     }
     if (h.version != LLAMA_ENC_VERSION) {
         err = "unsupported encrypted model version";
         std::fclose(fin);
-        return "";
+        return false;
     }
     if (h.chunk_size == 0 || h.chunk_size > (64u * 1024u * 1024u)) {
         err = "invalid chunk size";
         std::fclose(fin);
-        return "";
+        return false;
     }
 
     const auto hdr = header_bytes(h);
@@ -655,12 +656,11 @@ std::string common_model_decrypt_to_temp_file(
     uint64_t mac_seed = 0;
     derive_seeds(passcode, h.salt, enc_seed, mac_seed);
 
-    const std::string tmp_path = make_temp_path_for(encrypted_path);
-    FILE * fout = std::fopen(tmp_path.c_str(), "wb");
+    FILE * fout = std::fopen(output_path.c_str(), "wb");
     if (!fout) {
-        err = std::string("failed to create temp decrypted model: ") + std::strerror(errno);
+        err = std::string("failed to create decrypted model: ") + std::strerror(errno);
         std::fclose(fin);
-        return "";
+        return false;
     }
 
     uint64_t remaining = h.orig_size;
@@ -674,15 +674,19 @@ std::string common_model_decrypt_to_temp_file(
             }
             std::fclose(fout);
             std::fclose(fin);
-            return "";
+            return false;
         }
         if (chunk_len == 0 || chunk_len > h.chunk_size) {
             err = "invalid chunk length";
-            return "";
+            std::fclose(fout);
+            std::fclose(fin);
+            return false;
         }
         if (chunk_len > remaining) {
             err = "chunk length exceeds original size";
-            return "";
+            std::fclose(fout);
+            std::fclose(fin);
+            return false;
         }
 
         buf.resize(chunk_len);
@@ -692,7 +696,7 @@ std::string common_model_decrypt_to_temp_file(
             }
             std::fclose(fout);
             std::fclose(fin);
-            return "";
+            return false;
         }
 
         uint8_t tag[TAG_SZ];
@@ -702,7 +706,7 @@ std::string common_model_decrypt_to_temp_file(
             }
             std::fclose(fout);
             std::fclose(fin);
-            return "";
+            return false;
         }
 
         uint8_t expected[TAG_SZ];
@@ -711,7 +715,7 @@ std::string common_model_decrypt_to_temp_file(
             err = "invalid passcode or corrupted encrypted model";
             std::fclose(fout);
             std::fclose(fin);
-            return "";
+            return false;
         }
 
         // Decrypt in-place.
@@ -719,11 +723,11 @@ std::string common_model_decrypt_to_temp_file(
 
         if (!fwrite_exact(fout, buf.data(), buf.size(), err)) {
             if (err.empty()) {
-                err = "failed to write temp decrypted model";
+                err = "failed to write decrypted model";
             }
             std::fclose(fout);
             std::fclose(fin);
-            return "";
+            return false;
         }
 
         remaining -= chunk_len;
@@ -734,5 +738,27 @@ std::string common_model_decrypt_to_temp_file(
     std::fclose(fout);
     std::fclose(fin);
 
+    return true;
+}
+
+std::string common_model_decrypt_to_temp_file(
+    const std::string & encrypted_path,
+    const std::string & passcode,
+    std::string & err)
+{
+    const std::string tmp_path = make_temp_path_for(encrypted_path);
+    if (!decrypt_file_impl(encrypted_path, tmp_path, passcode, err)) {
+        return "";
+    }
+
     return tmp_path;
+}
+
+bool common_model_decrypt_file(
+    const std::string & encrypted_path,
+    const std::string & output_path,
+    const std::string & passcode,
+    std::string & err)
+{
+    return decrypt_file_impl(encrypted_path, output_path, passcode, err);
 }

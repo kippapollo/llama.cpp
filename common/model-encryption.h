@@ -23,6 +23,14 @@ bool common_model_encrypt_file(
     const std::string & passcode,
     std::string & err);
 
+// Decrypts encrypted model to output path.
+// On error, returns false and sets err.
+bool common_model_decrypt_file(
+    const std::string & encrypted_path,
+    const std::string & output_path,
+    const std::string & passcode,
+    std::string & err);
+
 // Validates the 5x4-digit passcode format: dddd-dddd-dddd-dddd-dddd
 bool common_model_validate_passcode_5x4(const std::string & passcode);
 

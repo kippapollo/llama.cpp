@@ -94,14 +94,15 @@ static void log_line(const char * s) {
 }
 
 static void print_usage(const char * argv0) {
-    printf("usage: %s --in <model.gguf> --out <model.gguf.enc> --passcode <dddd-dddd-dddd-dddd-dddd>\n", argv0);
+    printf("usage:\n");
+    printf("  %s --in <model.gguf> --out <model.gguf.enc> --passcode <dddd-dddd-dddd-dddd-dddd>\n", argv0);
     printf("\n");
-    printf("Encrypt a GGUF model file into an encrypted container.\n");
+    printf("Encrypt a GGUF model file.\n");
     printf("\n");
     printf("options:\n");
     printf("  -h, --help            show this help\n");
     printf("  --in <path>           input gguf model path\n");
-    printf("  --out <path>          output encrypted model path\n");
+    printf("  --out <path>          output model path\n");
     printf("  --passcode <code>     5x4 digits, e.g. 3456-2342-2342-3423-2112\n");
 }
 
@@ -109,12 +110,17 @@ int main(int argc, char ** argv) {
     std::string in_path;
     std::string out_path;
     std::string passcode;
+    bool do_decrypt = false;
 
     for (int i = 1; i < argc; ++i) {
         const std::string arg = argv[i];
         if (arg == "-h" || arg == "--help") {
             print_usage(argv[0]);
             return 0;
+        }
+        if (arg == "--dec" || arg == "--decrypt") {
+            do_decrypt = true;
+            continue;
         }
         if (arg == "--in" && i + 1 < argc) {
             in_path = argv[++i];
@@ -140,6 +146,7 @@ int main(int argc, char ** argv) {
     }
 
     log_kv("cwd", get_cwd_str());
+    log_kv("mode", do_decrypt ? "decrypt" : "encrypt");
     log_kv("in", in_path);
     log_kv("out", out_path);
     {
@@ -157,6 +164,11 @@ int main(int argc, char ** argv) {
 
     if (!file_exists(in_path)) {
         fprintf(stderr, "[gguf-encrypt] error: input file not found or not readable\n");
+        return 1;
+    }
+
+    if (do_decrypt && !common_model_is_encrypted_file(in_path)) {
+        fprintf(stderr, "[gguf-encrypt] error: input file is not an encrypted model\n");
         return 1;
     }
 
@@ -184,17 +196,19 @@ int main(int argc, char ** argv) {
         }
     }
 
-    log_line("starting encryption");
+    log_line(do_decrypt ? "starting decryption" : "starting encryption");
 
     std::string err;
-    const bool ok = common_model_encrypt_file(in_path, out_path, passcode, err);
-    log_kv("encrypt_return", ok ? "true" : "false");
+    const bool ok = do_decrypt
+        ? common_model_decrypt_file(in_path, out_path, passcode, err)
+        : common_model_encrypt_file(in_path, out_path, passcode, err);
+    log_kv(do_decrypt ? "decrypt_return" : "encrypt_return", ok ? "true" : "false");
     if (!err.empty()) {
-        log_kv("encrypt_err", err);
+        log_kv(do_decrypt ? "decrypt_err" : "encrypt_err", err);
     }
 
     if (!ok) {
-        fprintf(stderr, "[gguf-encrypt] encryption failed\n");
+        fprintf(stderr, "[gguf-encrypt] %s failed\n", do_decrypt ? "decryption" : "encryption");
         return 1;
     }
 
