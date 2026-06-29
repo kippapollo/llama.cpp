@@ -1,0 +1,9 @@
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml.cpp.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml-alloc.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml-backend.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml-backend-meta.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml-opt.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml-threading.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/ggml-quants.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-base.dir/RelWithDebInfo/gguf.obj

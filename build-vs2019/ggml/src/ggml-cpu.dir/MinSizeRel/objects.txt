@@ -1,0 +1,15 @@
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ggml-cpu/ggml-cpu.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ggml-cpu/ggml-cpu.cpp.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ggml-cpu/repack.cpp.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/hbm.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ggml-cpu/quants.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/traits.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/amx.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/mmq.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/binary-ops.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/unary-ops.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/vec.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ops.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/sgemm.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ggml-cpu/arch/x86/quants.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/MinSizeRel/ggml-cpu/arch/x86/repack.cpp.obj

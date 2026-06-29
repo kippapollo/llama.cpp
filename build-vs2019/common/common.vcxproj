@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{55CF8A33-3721-3DFC-B9ED-404E702E0BCB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <EnforceProcessCountAcrossBuilds>true</EnforceProcessCountAcrossBuilds>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>common</ProjectName>
+    <CudaToolkitCustomDir>C:/dev/cuda-11.3\</CudaToolkitCustomDir>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="C:/dev/cuda-11.3\extras\visual_studio_integration\MSBuildExtensions\CUDA 11.3.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">common.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">common</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">common.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">common</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">common.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">common</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">common.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">common</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <CudaLink>
+      <AdditionalOptions></AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <CudaLink>
+      <AdditionalOptions></AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <CudaLink>
+      <AdditionalOptions></AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LLAMA_USE_HTTPLIB;_CRT_SECURE_NO_WARNINGS;LLAMA_SHARED;GGML_USE_CPU;GGML_USE_CUDA;GGML_SHARED;GGML_BACKEND_SHARED;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\common\.;C:\dev\llama.cpp-guard\llama.cpp-offline\common\..\vendor;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\include;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\common;C:\dev\llama.cpp-guard\llama.cpp-offline\src\..\examples\gguf-hash\deps;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <CudaLink>
+      <AdditionalOptions></AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/common/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/common/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\.git\index;C:\dev\llama.cpp-guard\llama.cpp-offline\common\build-info.cpp.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/common/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/common/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\.git\index;C:\dev\llama.cpp-guard\llama.cpp-offline\common\build-info.cpp.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/common/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/common/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\.git\index;C:\dev\llama.cpp-guard\llama.cpp-offline\common\build-info.cpp.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/common/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/common/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\.git\index;C:\dev\llama.cpp-guard\llama.cpp-offline\common\build-info.cpp.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\arg.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\arg.h" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\base64.hpp" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser.h" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser-xml-toolcall.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser-xml-toolcall.cpp" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-auto-parser-generator.cpp" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-auto-parser-helpers.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-auto-parser.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-diff-analyzer.cpp" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-peg-parser.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-peg-parser.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\common.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\common.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\console.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\console.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\debug.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\debug.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\download.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\download.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\hf-cache.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\hf-cache.h" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\http.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\json-partial.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\json-partial.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\json-schema-to-grammar.cpp" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\llguidance.cpp" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\log.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\log.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-cache.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-cache.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-map.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-map.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-mod.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-mod.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\model-bundle.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\model-bundle.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-linear.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-linear.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-embedding.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-embedding.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-router.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-router.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\peg-parser.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\peg-parser.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\preset.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\preset.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\reasoning-budget.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\reasoning-budget.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\regex-partial.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\regex-partial.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\sampling.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\sampling.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\speculative.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\speculative.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\unicode.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\unicode.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\lexer.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\lexer.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\parser.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\parser.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\runtime.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\runtime.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\value.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\value.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\string.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\string.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\caps.cpp" />
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\caps.h" />
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\license.cpp" />
+    <Object Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\build_info.dir\$(Configuration)\build-info.obj" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ZERO_CHECK.vcxproj">
+      <Project>{36475289-4984-37DF-A933-125B7D031312}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\build_info.vcxproj">
+      <Project>{C56A0E43-1F48-3CF4-93BF-E8D03CD13F37}</Project>
+      <Name>build_info</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\vendor\cpp-httplib\cpp-httplib.vcxproj">
+      <Project>{BE2C3D84-025C-3321-A99F-CB950A8B4C6F}</Project>
+      <Name>cpp-httplib</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml.vcxproj">
+      <Project>{3A17D3B1-31B7-3643-A879-DD98AF5F12E7}</Project>
+      <Name>ggml</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-base.vcxproj">
+      <Project>{F8802C4B-D56E-3956-B0A7-A6716A832124}</Project>
+      <Name>ggml-base</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cpu.vcxproj">
+      <Project>{16C159D2-5145-3611-AECF-6E1BF0CF73A7}</Project>
+      <Name>ggml-cpu</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda\ggml-cuda.vcxproj">
+      <Project>{C3E6D457-56E6-3EC1-9299-ADBE3A953831}</Project>
+      <Name>ggml-cuda</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\src\llama.vcxproj">
+      <Project>{D6308C05-B4CE-32EA-91C1-ADBF0F3F93A8}</Project>
+      <Name>llama</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\src\llama_crypto.vcxproj">
+      <Project>{8AC62230-1A4A-38EF-A559-76FD1AAB0658}</Project>
+      <Name>llama_crypto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="C:/dev/cuda-11.3\extras\visual_studio_integration\MSBuildExtensions\CUDA 11.3.targets" />
+  </ImportGroup>
+</Project>

@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\arg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser-xml-toolcall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-auto-parser-generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-auto-parser-helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-diff-analyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-peg-parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\download.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\hf-cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\json-partial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\json-schema-to-grammar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\llguidance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-mod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\model-bundle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-linear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-embedding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-router.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\peg-parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\preset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\reasoning-budget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\regex-partial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\sampling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\speculative.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\unicode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\lexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\runtime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\value.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\caps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\license.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\arg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\base64.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-parser-xml-toolcall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-auto-parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat-peg-parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\chat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\download.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\hf-cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\http.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\json-partial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\ngram-mod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\model-bundle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-linear.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-embedding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\prompt-guardrail-router.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\peg-parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\preset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\reasoning-budget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\regex-partial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\sampling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\speculative.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\unicode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\lexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\runtime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\jinja\caps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\llama.cpp-guard\llama.cpp-offline\common\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\common\build_info.dir\$(Configuration)\build-info.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8577E3DF-FA92-3025-BB99-D08E64498460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{5BA2A8C1-8F72-344A-8CC1-711DCA8F9058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{45BFFE04-CEFC-3862-8281-14DA6B2D037F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

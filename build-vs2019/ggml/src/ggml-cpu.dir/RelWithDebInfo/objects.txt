@@ -1,0 +1,15 @@
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ggml-cpu/ggml-cpu.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ggml-cpu/ggml-cpu.cpp.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ggml-cpu/repack.cpp.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/hbm.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ggml-cpu/quants.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/traits.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/amx.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/mmq.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/binary-ops.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/unary-ops.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/vec.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ops.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/sgemm.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ggml-cpu/arch/x86/quants.c.obj
+C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cpu.dir/RelWithDebInfo/ggml-cpu/arch/x86/repack.cpp.obj

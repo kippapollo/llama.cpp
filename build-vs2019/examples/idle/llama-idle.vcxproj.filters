@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\examples\idle\idle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\llama.cpp-guard\llama.cpp-offline\examples\idle\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{45BFFE04-CEFC-3862-8281-14DA6B2D037F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

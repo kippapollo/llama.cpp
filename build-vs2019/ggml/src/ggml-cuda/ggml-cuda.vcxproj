@@ -1,0 +1,821 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C3E6D457-56E6-3EC1-9299-ADBE3A953831}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <EnforceProcessCountAcrossBuilds>true</EnforceProcessCountAcrossBuilds>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ggml-cuda</ProjectName>
+    <CudaToolkitCustomDir>C:/dev/cuda-11.3\</CudaToolkitCustomDir>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="C:/dev/cuda-11.3\extras\visual_studio_integration\MSBuildExtensions\CUDA 11.3.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ggml-cuda.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ggml-cuda</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ggml-cuda.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ggml-cuda</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ggml-cuda.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ggml-cuda</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ggml-cuda.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ggml-cuda</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization></Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);CMAKE_INTDIR="Debug";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;CMAKE_INTDIR=\"Debug\";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;GGML_BACKEND_BUILD;GGML_BACKEND_SHARED;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;GGML_CUDA_PEER_MAX_BATCH_SIZE=128;GGML_CUDA_USE_GRAPHS;GGML_SHARED;CMAKE_INTDIR="Debug";ggml_cuda_EXPORTS</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -std=c++17 --generate-code=arch=compute_86,code=[compute_86,sm_86] -extended-lambda -Xcompiler="/EHsc -Ob0 -Zi /Zc:preprocessor"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <FastMath>true</FastMath>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>Od</Optimization>
+      <Runtime>MDd</Runtime>
+      <RuntimeChecks>RTC1</RuntimeChecks>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <UseHostInclude>false</UseHostInclude>
+    </CudaCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/Debug/exports.def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/Debug//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\Debug\ggml-base.lib;C:\dev\cuda-11.3\lib\x64\cudart.lib;C:\dev\cuda-11.3\lib\x64\cublas.lib;C:\dev\cuda-11.3\lib\x64\cuda.lib;C:\dev\cuda-11.3\lib\x64\cublasLt.lib;cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/Debug/ggml-cuda.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ModuleDefinitionFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/Debug/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/bin/Debug/ggml-cuda.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+      <Version>0.15</Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization></Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);CMAKE_INTDIR="Release";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;CMAKE_INTDIR=\"Release\";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;GGML_BACKEND_BUILD;GGML_BACKEND_SHARED;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;GGML_CUDA_PEER_MAX_BATCH_SIZE=128;GGML_CUDA_USE_GRAPHS;GGML_SHARED;CMAKE_INTDIR="Release";ggml_cuda_EXPORTS</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -std=c++17 --generate-code=arch=compute_86,code=[compute_86,sm_86] -extended-lambda -Xcompiler="/EHsc -Ob2 /Zc:preprocessor"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <FastMath>true</FastMath>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>O2</Optimization>
+      <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <UseHostInclude>false</UseHostInclude>
+    </CudaCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/Release/exports.def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/Release//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\Release\ggml-base.lib;C:\dev\cuda-11.3\lib\x64\cudart.lib;C:\dev\cuda-11.3\lib\x64\cublas.lib;C:\dev\cuda-11.3\lib\x64\cuda.lib;C:\dev\cuda-11.3\lib\x64\cublasLt.lib;cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/Release/ggml-cuda.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ModuleDefinitionFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/Release/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/bin/Release/ggml-cuda.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+      <Version>0.15</Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization></Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);CMAKE_INTDIR="MinSizeRel";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;CMAKE_INTDIR=\"MinSizeRel\";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;GGML_BACKEND_BUILD;GGML_BACKEND_SHARED;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;GGML_CUDA_PEER_MAX_BATCH_SIZE=128;GGML_CUDA_USE_GRAPHS;GGML_SHARED;CMAKE_INTDIR="MinSizeRel";ggml_cuda_EXPORTS</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -std=c++17 --generate-code=arch=compute_86,code=[compute_86,sm_86] -extended-lambda -Xcompiler="/EHsc -Ob1 /Zc:preprocessor"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <FastMath>true</FastMath>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>O1</Optimization>
+      <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <UseHostInclude>false</UseHostInclude>
+    </CudaCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/MinSizeRel/exports.def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/MinSizeRel//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\MinSizeRel\ggml-base.lib;C:\dev\cuda-11.3\lib\x64\cudart.lib;C:\dev\cuda-11.3\lib\x64\cublas.lib;C:\dev\cuda-11.3\lib\x64\cuda.lib;C:\dev\cuda-11.3\lib\x64\cublasLt.lib;cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/MinSizeRel/ggml-cuda.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ModuleDefinitionFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/MinSizeRel/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/bin/MinSizeRel/ggml-cuda.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+      <Version>0.15</Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization></Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);CMAKE_INTDIR="RelWithDebInfo";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;CMAKE_INTDIR=\"RelWithDebInfo\";ggml_cuda_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;GGML_BACKEND_BUILD;GGML_BACKEND_SHARED;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;GGML_CUDA_PEER_MAX_BATCH_SIZE=128;GGML_CUDA_USE_GRAPHS;GGML_SHARED;CMAKE_INTDIR="RelWithDebInfo";ggml_cuda_EXPORTS</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -std=c++17 --generate-code=arch=compute_86,code=[compute_86,sm_86] -extended-lambda -Xcompiler="/EHsc -Ob1 -Zi /Zc:preprocessor"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <FastMath>true</FastMath>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>O2</Optimization>
+      <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <UseHostInclude>false</UseHostInclude>
+    </CudaCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\..;C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\..\include;C:\dev\cuda-11.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/RelWithDebInfo/exports.def C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/RelWithDebInfo//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\RelWithDebInfo\ggml-base.lib;C:\dev\cuda-11.3\lib\x64\cudart.lib;C:\dev\cuda-11.3\lib\x64\cublas.lib;C:\dev\cuda-11.3\lib\x64\cuda.lib;C:\dev\cuda-11.3\lib\x64\cublasLt.lib;cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/RelWithDebInfo/ggml-cuda.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ModuleDefinitionFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/ggml-cuda.dir/RelWithDebInfo/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/bin/RelWithDebInfo/ggml-cuda.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+      <Version>0.15</Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/ggml/src/ggml-cuda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompilerABI.cu;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDAInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindCUDAToolkit.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesAll.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesNative.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesValidate.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAFilterImplicitLibs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDALinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCUDALinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCFilterImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCParseImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\CMakeFiles\4.2.2\CMakeCUDACompiler.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/ggml/src/ggml-cuda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompilerABI.cu;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDAInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindCUDAToolkit.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesAll.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesNative.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesValidate.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAFilterImplicitLibs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDALinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCUDALinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCFilterImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCParseImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\CMakeFiles\4.2.2\CMakeCUDACompiler.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/ggml/src/ggml-cuda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompilerABI.cu;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDAInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindCUDAToolkit.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesAll.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesNative.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesValidate.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAFilterImplicitLibs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDALinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCUDALinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCFilterImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCParseImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\CMakeFiles\4.2.2\CMakeCUDACompiler.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/dev/llama.cpp-guard/llama.cpp-offline/ggml/src/ggml-cuda/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/llama.cpp-guard/llama.cpp-offline -BC:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019 --check-stamp-file C:/dev/llama.cpp-guard/llama.cpp-offline/build-vs2019/ggml/src/ggml-cuda/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDACompilerABI.cu;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCUDAInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCUDACompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindCUDAToolkit.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesAll.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesNative.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAArchitecturesValidate.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDAFilterImplicitLibs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCUDALinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCUDALinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCFilterImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeNVCCParseImplicitInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CUDA.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\CMakeFiles\4.2.2\CMakeCUDACompiler.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-cuda\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\acc.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\add-id.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\allreduce.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\arange.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\argmax.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\argsort.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\binbcast.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\clamp.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\col2im-1d.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\common.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\concat.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\conv-transpose-1d.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\conv2d-dw.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\conv2d-transpose.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\conv2d.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\convert.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\count-equal.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\cp-async.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\cpy-utils.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\cpy.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\cross-entropy-loss.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\cumsum.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\dequantize.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\diag.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\diagmask.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fattn-common.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fattn-mma-f16.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fattn-tile.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fattn-vec.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fattn-wmma-f16.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fattn.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fill.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\fwht.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\gated_delta_net.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\getrows.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\gla.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\im2col.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mean.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mma.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mmf.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mmid.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mmq.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mmvf.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\mmvq.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\norm.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\opt-step-adamw.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\opt-step-sgd.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\out-prod.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\pad.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\pad_reflect_1d.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\pool2d.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\quantize.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\reduce_rows.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\roll.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\rope.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\scale.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\set-rows.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\set.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\snake.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\softcap.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\softmax.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\solve_tri.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\ssm-conv.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\ssm-scan.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\sum.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\sumrows.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\top-k.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\topk-moe.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\tri.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\tsembd.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\unary.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\upscale.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\vecdotq.cuh">
+    </None>
+    <None Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\src\ggml-cuda\wkv.cuh">
+    </None>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\ggml\include\ggml-cuda.h" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\acc.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\add-id.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\allreduce.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\arange.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\argmax.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\argsort.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\binbcast.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\clamp.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\col2im-1d.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\concat.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\conv-transpose-1d.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\conv2d-dw.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\conv2d-transpose.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\conv2d.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\convert.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\count-equal.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\cpy.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\cross-entropy-loss.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\cumsum.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\diag.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\diagmask.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\fattn-tile.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\fattn-wmma-f16.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\fattn.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\fill.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\fwht.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\gated_delta_net.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\getrows.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\ggml-cuda.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\gla.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\im2col.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\mean.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\mmf.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\mmid.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\mmq.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\mmvf.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\mmvq.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\norm.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\opt-step-adamw.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\opt-step-sgd.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\out-prod.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\pad.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\pad_reflect_1d.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\pool2d.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\quantize.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\roll.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\rope.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\scale.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\set-rows.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\set.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\snake.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\softcap.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\softmax.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\solve_tri.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\ssm-conv.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\ssm-scan.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\sum.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\sumrows.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\top-k.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\topk-moe.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\tri.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\tsembd.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\unary.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\upscale.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\wkv.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq112-dv112.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq128-dv128.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq192-dv128.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq256-dv256.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq320-dv256.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq40-dv40.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq512-dv512.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq576-dv512.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq64-dv64.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq72-dv72.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq80-dv80.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-tile-instance-dkq96-dv96.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_1-ncols2_16.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_1-ncols2_32.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_1-ncols2_8.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_16-ncols2_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_16-ncols2_2.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_16-ncols2_4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_2-ncols2_16.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_2-ncols2_32.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_2-ncols2_4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_2-ncols2_8.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_32-ncols2_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_32-ncols2_2.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_4-ncols2_16.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_4-ncols2_2.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_4-ncols2_4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_4-ncols2_8.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_64-ncols2_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_8-ncols2_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_8-ncols2_2.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_8-ncols2_4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-mma-f16-instance-ncols1_8-ncols2_8.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq1_s.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq2_s.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq2_xs.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq2_xxs.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq3_s.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq3_xxs.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq4_nl.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-iq4_xs.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-mxfp4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-nvfp4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q1_0.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q2_k.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q3_k.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q4_0.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q4_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q4_k.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q5_0.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q5_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q5_k.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q6_k.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmq-instance-q8_0.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_1.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_10.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_11.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_12.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_13.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_14.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_15.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_16.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_2.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_3.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_4.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_5.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_6.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_7.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_8.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\mmf-instance-ncols_9.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-vec-instance-f16-f16.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-vec-instance-q4_0-q4_0.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-vec-instance-q8_0-q8_0.cu" />
+    <CudaCompile Include="..\..\..\..\ggml\src\ggml-cuda\template-instances\fattn-vec-instance-bf16-bf16.cu" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ZERO_CHECK.vcxproj">
+      <Project>{36475289-4984-37DF-A933-125B7D031312}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\dev\llama.cpp-guard\llama.cpp-offline\build-vs2019\ggml\src\ggml-base.vcxproj">
+      <Project>{F8802C4B-D56E-3956-B0A7-A6716A832124}</Project>
+      <Name>ggml-base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="C:/dev/cuda-11.3\extras\visual_studio_integration\MSBuildExtensions\CUDA 11.3.targets" />
+  </ImportGroup>
+</Project>

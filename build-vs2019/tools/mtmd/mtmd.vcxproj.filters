@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\mtmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\mtmd-audio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\mtmd-image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\mtmd-helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\clip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\cogvlm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\conformer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\glm4v.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\internvl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\kimivl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\kimik25.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\nemotron-v2-vl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\llama4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\llava.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\minicpmv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\paddleocr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\pixtral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\qwen2vl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\qwen3vl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\siglip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\whisper-enc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\deepseekocr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\mobilenetv5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\youtuvl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\mtmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\mtmd-helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\clip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\clip-impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\clip-model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\clip-graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\models\models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\llama.cpp-guard\llama.cpp-offline\tools\mtmd\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8577E3DF-FA92-3025-BB99-D08E64498460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{45BFFE04-CEFC-3862-8281-14DA6B2D037F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

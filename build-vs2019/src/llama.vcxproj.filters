@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-adapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-arch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-batch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-chat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-cparams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-grammar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-hparams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-io.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-kv-cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-kv-cache-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-memory-hybrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-memory-hybrid-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-memory-recurrent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-mmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-model-loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-model-saver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-quant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-sampler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\llama-vocab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\unicode-data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\unicode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\afmoe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\apertus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\arcee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\arctic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\arwkv7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\baichuan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\bailingmoe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\bailingmoe2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\bert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\bitnet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\bloom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\chameleon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\chatglm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\codeshell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\cogvlm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\cohere2-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\command-r.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\dbrx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\deci.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\deepseek.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\deepseek2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\delta-net-base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\dots1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\dream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\ernie4-5-moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\ernie4-5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\eurobert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\exaone-moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\exaone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\exaone4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\falcon-h1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\falcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gemma-embedding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gemma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gemma2-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gemma3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gemma3n-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\glm4-moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\glm4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gpt2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\gptneox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\granite-hybrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\granite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\grok.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\grovemoe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\hunyuan-dense.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\hunyuan-moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\internlm2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\jais.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\jais2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\jamba.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\kimi-linear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\lfm2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\llada-moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\llada.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\llama-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\llama.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\maincoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\mamba-base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\mamba.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\mimo2-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\minicpm3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\minimax-m2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\mistral3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\modern-bert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\mpt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\nemotron-h.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\nemotron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\neo-bert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\olmo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\olmo2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\olmoe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\openai-moe-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\openelm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\orion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\paddleocr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\pangu-embedded.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\phi2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\phi3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\plamo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\plamo2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\plamo3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\plm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen2moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen2vl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen35.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen35moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen3moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen3next.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen3vl-moe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\qwen3vl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\refact.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\rnd1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\rwkv6-base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\rwkv6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\rwkv6qwen2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\rwkv7-base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\rwkv7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\seed-oss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\smallthinker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\smollm3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\stablelm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\starcoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\starcoder2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\step35-iswa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\t5-dec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\t5-enc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\wavtokenizer-dec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\models\xverse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\include\llama.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\unicode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\llama.cpp-guard\llama.cpp-offline\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8577E3DF-FA92-3025-BB99-D08E64498460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{45BFFE04-CEFC-3862-8281-14DA6B2D037F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
