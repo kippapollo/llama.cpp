@@ -1,0 +1,18 @@
+# Sample llama-server access allow file
+#
+# Format:
+#   alias,ip,mac1,mac2,...
+#
+# Rules:
+# - One entry per allowed IP.
+# - The server only allows requests when the source IP is present here.
+# - The server also requires the resolved MAC address to match one of the MAC
+#   addresses listed for that IP.
+# - Blank lines and lines starting with # are ignored.
+#
+# Replace the placeholder IP and MAC values with the actual host you want to
+# allow.
+
+office-desktop,192.168.1.10,00:11:22:33:44:55
+laptop,192.168.1.11,aa:bb:cc:dd:ee:ff,aa:bb:cc:dd:ee:00
+lab-box,10.0.0.20,12:34:56:78:9a:bc
