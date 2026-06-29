@@ -788,6 +788,61 @@ static std::string apply(
     return result;
 }
 
+// Public wrapper that renders a single chat template directly from autoparser
+// generation_params. Mirrors the internal apply() above; the autoparser and
+// template-analysis tooling use this to render templates with/without tools,
+// prompts, and reasoning context.
+// NOTE: reconstructed implementation — the original was missing from this
+// snapshot export. Behaviour matches the internal static apply() renderer.
+std::string common_chat_template_direct_apply(
+    const common_chat_template & tmpl,
+    const autoparser::generation_params & inputs,
+    const std::optional<json> & messages_override,
+    const std::optional<json> & tools_override,
+    const std::optional<json> & additional_context)
+{
+    jinja::context ctx(tmpl.source());
+
+    nlohmann::ordered_json inp = nlohmann::ordered_json{
+        {"messages", messages_override.has_value() ? *messages_override : inputs.messages},
+        {"tools", tools_override.has_value() ? *tools_override : inputs.tools},
+        {"bos_token", tmpl.bos_token()},
+        {"eos_token", tmpl.eos_token()},
+    };
+    if (inputs.extra_context.is_object()) {
+        for (const auto & [k, v] : inputs.extra_context.items()) {
+            inp[k] = v;
+        }
+    }
+    if (additional_context.has_value()) {
+        for (const auto & [k, v] : additional_context->items()) {
+            inp[k] = v;
+        }
+    }
+    if (inputs.add_generation_prompt) {
+        inp["add_generation_prompt"] = true;
+    }
+    if (inp["tools"].is_null()) {
+        inp["tools"] = json::array();
+    }
+
+    jinja::global_from_json(ctx, inp, inputs.mark_input);
+
+    jinja::runtime runtime(ctx);
+    const jinja::value results = runtime.execute(tmpl.prog);
+    auto parts = runtime.gather_string_parts(results);
+
+    std::string result = parts->as_string().str();
+
+    if (inputs.add_bos && string_starts_with(result, tmpl.bos_token())) {
+        result = result.substr(tmpl.bos_token().size());
+    }
+    if (inputs.add_eos && string_ends_with(result, tmpl.eos_token())) {
+        result = result.substr(0, result.size() - tmpl.eos_token().size());
+    }
+    return result;
+}
+
 static common_chat_params common_chat_params_init_generic(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
 
