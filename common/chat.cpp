@@ -39,12 +39,38 @@ static void common_chat_enforce_system_prompt(
         bool requires_typed_content) {
     GGML_ASSERT(messages.is_array());
 
+    // Collect and remove client-provided system messages. Their text is preserved
+    // (appended after the guardrail prompt) so client/agent instructions — e.g.
+    // tool-usage rules from Continue/Cline — survive while the guardrail prompt
+    // stays authoritative (first).
+    std::string client_system;
     for (auto it = messages.begin(); it != messages.end(); ) {
         if (it->contains("role") && (*it)["role"] == "system") {
+            std::string text;
+            const auto & content = (*it)["content"];
+            if (content.is_string()) {
+                text = content.get<std::string>();
+            } else if (content.is_array()) {
+                for (const auto & part : content) {
+                    if (part.contains("text") && part["text"].is_string()) {
+                        if (!text.empty()) { text += "\n"; }
+                        text += part["text"].get<std::string>();
+                    }
+                }
+            }
+            if (!text.empty()) {
+                if (!client_system.empty()) { client_system += "\n\n"; }
+                client_system += text;
+            }
             it = messages.erase(it);
         } else {
             ++it;
         }
+    }
+
+    std::string final_prompt = system_prompt;
+    if (!client_system.empty()) {
+        final_prompt += "\n\n" + client_system;
     }
 
     json sys_msg = json::object();
@@ -53,11 +79,11 @@ static void common_chat_enforce_system_prompt(
         sys_msg["content"] = json::array({
             {
                 {"type", "text"},
-                {"text", system_prompt},
+                {"text", final_prompt},
             }
         });
     } else {
-        sys_msg["content"] = system_prompt;
+        sys_msg["content"] = final_prompt;
     }
 
     messages.insert(messages.begin(), sys_msg);
@@ -178,26 +204,36 @@ std::vector<common_chat_msg_diff> common_chat_msg_diff::compute_diffs(const comm
         diff.content_delta = string_diff(msg_prv.content, msg_new.content);
     }
 
+    // During partial (streaming) parsing the parser can transiently produce a
+    // non-monotonic result: fewer tool calls, a renamed last call, or arguments
+    // that are not a clean extension of the previous ones — e.g. when a tool
+    // argument contains code/markup with '{', '}' or quotes that an in-progress
+    // parse briefly mis-reads as an extra tool call. These are not real errors;
+    // throwing here aborts the whole stream. Instead, emit the content/reasoning
+    // diffs computed so far and skip the tool-call delta for this step — a later
+    // (more complete) parse reconciles it.
     if (msg_new.tool_calls.size() < msg_prv.tool_calls.size()) {
-        throw std::runtime_error("Invalid diff: now finding less tool calls!");
+        return diffs;
     }
 
     if (!msg_prv.tool_calls.empty()) {
         const auto idx = msg_prv.tool_calls.size() - 1;
         const auto & pref = msg_prv.tool_calls[idx];
         const auto & newf = msg_new.tool_calls[idx];
-        if (pref.name != newf.name) {
-            throw std::runtime_error("Invalid diff: tool call mismatch!");
-        }
-        const auto args_diff = string_diff(pref.arguments, newf.arguments);
-        if (!args_diff.empty() || pref.id != newf.id) {
-            auto & diff = diffs.emplace_back();
-            diff.tool_call_index = idx;
-            if (pref.id != newf.id) {
-                diff.tool_call_delta.id = newf.id;
-                diff.tool_call_delta.name = newf.name;
+        // Only emit a delta when the last call extends cleanly (same name and the
+        // new arguments start with the previous ones). Otherwise treat it as a
+        // transient parse and skip it this step.
+        if (pref.name == newf.name && string_starts_with(newf.arguments, pref.arguments)) {
+            const auto args_diff = string_diff(pref.arguments, newf.arguments);
+            if (!args_diff.empty() || pref.id != newf.id) {
+                auto & diff = diffs.emplace_back();
+                diff.tool_call_index = idx;
+                if (pref.id != newf.id) {
+                    diff.tool_call_delta.id = newf.id;
+                    diff.tool_call_delta.name = newf.name;
+                }
+                diff.tool_call_delta.arguments = args_diff;
             }
-            diff.tool_call_delta.arguments = args_diff;
         }
     }
     for (size_t idx = msg_prv.tool_calls.size(); idx < msg_new.tool_calls.size(); ++idx) {
@@ -3254,8 +3290,13 @@ common_chat_params common_chat_templates_apply(
         res.guardrail_message = system_prompt;
     }
 
-    // Enforce grammar regardless of user-provided grammar / json_schema.
-    res.grammar = LLAMA_CPP_FORCED_GRAMMAR;
+    // Enforce the coding-only grammar for plain chat, but NOT when the client
+    // provides tools: the forced text grammar would override the tool-call
+    // grammar and prevent the model from emitting valid tool calls. Tool-bearing
+    // requests still get the guardrail system prompt + classification.
+    if (inputs.tools.empty()) {
+        res.grammar = LLAMA_CPP_FORCED_GRAMMAR;
+    }
 
     return res;
 }
