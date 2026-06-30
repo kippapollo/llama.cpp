@@ -8,6 +8,7 @@
 #include "common.h"
 #include "llama.h"
 #include "log.h"
+#include "prompt-guardrail.h"
 
 #include <atomic>
 #include <clocale>
@@ -77,6 +78,10 @@ static bool parse_server_extra_args(
         }
         if (consume_option(i, "--log-dir", &value)) {
             extra_params->log_dir = std::move(value);
+            continue;
+        }
+        if (std::string(argv[i] != nullptr ? argv[i] : "") == "--tool-force-mode") {
+            common_prompt_guardrail_set_tool_force_mode(true);
             continue;
         }
         append_arg(argv[i] != nullptr ? argv[i] : "");

@@ -3279,8 +3279,18 @@ common_chat_params common_chat_templates_apply(
     const struct common_chat_templates_inputs & inputs)
 {
     GGML_ASSERT(tmpls != nullptr);
-    const auto route = common_prompt_guardrail_classify(inputs.messages);
-    const auto system_prompt = common_prompt_guardrail_system_prompt(route.route);
+
+    // --tool-force-mode: when the client provides tools, bypass the prompt
+    // guardrail (no classification / no refusal) and the forced system prompt,
+    // so agent tool-calling runs against the raw model with only the client's
+    // own prompt. Tool-less requests are unaffected.
+    const bool tool_force = common_prompt_guardrail_tool_force_mode() && !inputs.tools.empty();
+    common_prompt_guardrail_result route;   // defaults: route=TECH, refuse=false
+    std::string system_prompt;               // empty -> no forced guardrail prompt
+    if (!tool_force) {
+        route = common_prompt_guardrail_classify(inputs.messages);
+        system_prompt = common_prompt_guardrail_system_prompt(route.route);
+    }
     auto res = inputs.use_jinja
         ? common_chat_templates_apply_jinja(tmpls, inputs, system_prompt)
         : common_chat_templates_apply_legacy(tmpls, inputs, system_prompt);

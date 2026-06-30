@@ -165,6 +165,19 @@ llama-server.exe -m coder-enc.gguf -ngl 99 --host 127.0.0.1 --port 8080 ^
 - **`--log-dir <dir>`** — writes request/response records to
   `llama-server-<date>.jsonl`.
 - **`--path <dir>`** — serve a custom Web UI instead of the embedded one.
+- **`--tool-force-mode`** — when a request **provides tools**, run it raw against the
+  model: **no prompt-guardrail classification/refusal, no forced system prompt, and
+  no output guardrail**. Client/agent system instructions are passed through as-is.
+  This is intended for agent clients (Continue, Cline, etc.) where the guardrail/forced
+  prompt would otherwise suppress tool calling. Requests **without** tools, and all
+  requests when the flag is omitted, keep every guardrail. The access-allow list and
+  request logging still apply regardless of this flag.
+
+> Note on agent tool-calling: streaming tool-call responses no longer abort with
+> *"output guardrail failed: Invalid diff: now finding less tool calls!"* — the
+> streaming diff tolerates transient partial-parse states. Reliable file *writing*
+> still depends on the model's tool-calling strength; weaker coder models may print
+> code in chat or create empty files under heavy agent context.
 
 ---
 

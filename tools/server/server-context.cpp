@@ -1417,7 +1417,9 @@ private:
             slot.lora = params_base.lora_adapters;
         }
 
-        if (task.params.stream && guardrail_enabled()) {
+        // --tool-force-mode also bypasses the output guardrail for tool requests.
+        const bool tool_force_bypass = common_prompt_guardrail_tool_force_mode() && task.params.has_tools;
+        if (task.params.stream && guardrail_enabled() && !tool_force_bypass) {
             slot.stream_guardrail = std::make_unique<output_guardrail>();
         } else {
             slot.stream_guardrail.reset();
@@ -1838,6 +1840,7 @@ private:
 
         res->verbose           = slot.task->params.verbose;
         res->stream            = slot.task->params.stream;
+        res->has_tools         = slot.task->params.has_tools;
         res->include_usage     = slot.task->params.include_usage;
         res->res_type          = slot.task->params.res_type;
         res->oaicompat_model   = slot.task->params.oaicompat_model;

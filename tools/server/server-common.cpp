@@ -1133,6 +1133,10 @@ json oaicompat_chat_params_parse(
         throw std::invalid_argument("top_logprobs requires logprobs to be set to true");
     }
 
+    // Record whether the request provided tools (consumed by --tool-force-mode
+    // to also bypass the output guardrail for tool/agent requests).
+    llama_params["has_tools"] = has_tools;
+
     // Copy remaining properties to llama_params
     // This allows user to use llama.cpp-specific params like "mirostat", ... via OAI endpoint.
     // See "launch_slot_with_task()" for a complete list of params supported by llama.cpp

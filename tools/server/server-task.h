@@ -3,6 +3,7 @@
 #include "common.h"
 #include "llama.h"
 #include "output-guardrail.h"
+#include "prompt-guardrail.h"
 
 #include <string>
 #include <unordered_set>
@@ -83,6 +84,10 @@ struct task_params {
 
     // per-request parameters for chat parsing
     common_chat_parser_params chat_parser_params;
+
+    // true when the request provided tools (used by --tool-force-mode to also
+    // bypass the output guardrail for agent/tool requests)
+    bool has_tools = false;
 
     // Embeddings
     int32_t embd_normalize = 2; // (-1=none, 0=max absolute int16, 1=taxicab, 2=Euclidean/L2, >2=p-norm)
@@ -337,6 +342,7 @@ struct server_task_result_cmpl_final : server_task_result {
     llama_tokens tokens;
 
     bool stream;
+    bool has_tools = false;
     bool include_usage;
     result_timings timings;
     std::string prompt;
@@ -381,7 +387,10 @@ struct server_task_result_cmpl_final : server_task_result {
         is_updated = true;
         const std::string raw_content = content;
         oaicompat_msg = state.update_chat_msg(raw_content, false, oaicompat_msg_diffs);
-        output_guardrail_redact_assistant_content(content, oaicompat_msg, output_guardrail_redact_text);
+        // --tool-force-mode: skip output-guardrail redaction for tool requests.
+        if (!(common_prompt_guardrail_tool_force_mode() && has_tools)) {
+            output_guardrail_redact_assistant_content(content, oaicompat_msg, output_guardrail_redact_text);
+        }
 
         oai_resp_id = state.oai_resp_id;
         oai_resp_reasoning_id = state.oai_resp_reasoning_id;

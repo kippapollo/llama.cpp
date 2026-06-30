@@ -38,4 +38,11 @@ const char * common_prompt_guardrail_route_name(common_prompt_guardrail_route ro
 const char * common_prompt_guardrail_system_prompt(common_prompt_guardrail_route route);
 common_prompt_guardrail_result common_prompt_guardrail_classify(const std::vector<common_chat_msg> & messages);
 
+// Tool-force mode: when enabled (server flag --tool-force-mode), requests that
+// provide tools bypass the prompt-guardrail classification and the forced system
+// prompt — the model is called with only the client's own prompt, so agent
+// tool-calling is not constrained by the guardrail.
+void common_prompt_guardrail_set_tool_force_mode(bool enabled);
+bool common_prompt_guardrail_tool_force_mode();
+
 #endif // LLAMA_CPP_PROMPT_GUARDRAIL_H

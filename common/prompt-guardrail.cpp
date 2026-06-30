@@ -7,6 +7,7 @@
 #include "prompt-guardrail-router.h"
 
 #include <algorithm>
+#include <atomic>
 #include <cctype>
 #include <fstream>
 #include <filesystem>
@@ -16,6 +17,18 @@
 #include <stdexcept>
 #include <string_view>
 #include <vector>
+
+namespace {
+std::atomic<bool> g_tool_force_mode{false};
+}
+
+void common_prompt_guardrail_set_tool_force_mode(bool enabled) {
+    g_tool_force_mode.store(enabled, std::memory_order_relaxed);
+}
+
+bool common_prompt_guardrail_tool_force_mode() {
+    return g_tool_force_mode.load(std::memory_order_relaxed);
+}
 
 namespace {
 
