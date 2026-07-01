@@ -1,0 +1,2 @@
+# Admin password hash (secret) — created at first-run setup, never commit it.
+.admin-password.hash

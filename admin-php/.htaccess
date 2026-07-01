@@ -1,0 +1,11 @@
+# Restrict the guardrail admin panel to the local machine.
+# This panel controls who may access llama-server, so do not expose it on the
+# LAN. To allow specific remote admins, replace "Require local" with explicit
+# "Require ip <addr>" lines (and serve over HTTPS).
+Require local
+
+# Defense in depth: never serve dotfiles (e.g. a stray .admin-password.hash)
+# or this file as static content.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

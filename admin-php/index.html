@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Coding Agent</title>
+<link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=54">
+<script>(function(){try{if(localStorage.getItem('admin-theme')!=='dark')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+</head>
+<body class="chatpage">
+<header class="topbar">
+  <div class="topleft">
+    <button type="button" id="sidebtn" class="sidebtn" title="Show / hide sidebar" aria-label="Toggle sidebar">&#9776;</button>
+    <div class="brand">&#129302; AI Coding Agent</div>
+  </div>
+  <div class="topright">
+    <nav id="nav" hidden>
+      <span id="whoami" class="whoami"></span>
+      <a href="admin.html#dashboard" id="adminlink" hidden>Admin</a>
+      <a href="#" id="pwlink">Change password</a>
+      <a href="#" id="logoutlink" class="logout">Log out</a>
+    </nav>
+    <button type="button" class="themebtn" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme">&#9680;</button>
+  </div>
+</header>
+
+<div id="shell" class="chatshell" hidden>
+  <aside class="sessions">
+    <button type="button" id="newchat">&#43;&nbsp; New chat</button>
+    <div class="searchwrap"><input type="search" id="chatsearch" placeholder="Search chats&hellip;" autocomplete="off"></div>
+    <div class="sidelabel">Recent</div>
+    <ul id="sessionlist"></ul>
+    <div class="sidefoot muted">&copy; 2026 AI Coding Agent</div>
+  </aside>
+  <main class="chatmain">
+    <div id="agentbg" class="agentbg" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g class="rings" fill="none" stroke="currentColor" stroke-width="2">
+          <circle class="ring r1" cx="100" cy="106" r="46"/>
+          <circle class="ring r2" cx="100" cy="106" r="46"/>
+          <circle class="ring r3" cx="100" cy="106" r="46"/>
+        </g>
+        <g class="bot" fill="currentColor" stroke="currentColor">
+          <line x1="100" y1="74" x2="100" y2="60" stroke-width="3" stroke-linecap="round"/>
+          <circle class="ant" cx="100" cy="55" r="5" stroke="none"/>
+          <rect x="70" y="74" width="60" height="54" rx="15" fill="none" stroke-width="3"/>
+          <circle class="eye" cx="86" cy="100" r="6" stroke="none"/>
+          <circle class="eye e2" cx="114" cy="100" r="6" stroke="none"/>
+          <rect x="86" y="114" width="28" height="4" rx="2" stroke="none"/>
+        </g>
+      </svg>
+    </div>
+    <div id="chatlog" class="chatlog"></div>
+    <button type="button" id="scrolldown" class="scrolldown" hidden title="Jump to latest" aria-label="Scroll to bottom">&#8595;</button>
+    <div id="attachbar" class="attachbar"></div>
+    <form id="chatform" class="chatbar">
+      <div class="composer">
+        <button type="button" id="attachbtn" class="iconbtn" title="Attach file(s)" aria-label="Attach file">&#128206;</button>
+        <input type="file" id="fileinput" multiple hidden>
+        <textarea id="chatinput" rows="1" placeholder="Ask the coding agent&hellip;"></textarea>
+        <button type="submit" id="chatsend" class="sendbtn" title="Send" aria-label="Send">&#10148;</button>
+      </div>
+      <div class="composer-hint muted">AI Coding Agent answers software &amp; coding topics only &middot; Enter to send &middot; Shift&plus;Enter for a newline</div>
+    </form>
+  </main>
+</div>
+
+<div id="auth" class="authwrap" hidden><div class="card narrow"><div id="authbody"></div></div></div>
+
+<div id="charttip"></div>
+<script src="chat.js?v=54"></script>
+</body>
+</html>

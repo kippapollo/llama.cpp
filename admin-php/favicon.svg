@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a9eff"/>
+      <stop offset="1" stop-color="#2d7fe0"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#g)"/>
+  <!-- antenna -->
+  <circle cx="32" cy="12" r="3.2" fill="#fff"/>
+  <rect x="30.6" y="13" width="2.8" height="7" rx="1.4" fill="#fff"/>
+  <!-- robot head -->
+  <rect x="14" y="19" width="36" height="28" rx="9" fill="#fff"/>
+  <!-- eyes -->
+  <circle cx="24" cy="33" r="4.2" fill="#2d7fe0"/>
+  <circle cx="40" cy="33" r="4.2" fill="#2d7fe0"/>
+  <!-- mouth -->
+  <rect x="24" y="40" width="16" height="3" rx="1.5" fill="#4a9eff"/>
+  <!-- ears -->
+  <rect x="9" y="27" width="4" height="12" rx="2" fill="#fff"/>
+  <rect x="51" y="27" width="4" height="12" rx="2" fill="#fff"/>
+</svg>

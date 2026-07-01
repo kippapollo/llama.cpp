@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Coding Agent</title>
+<link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=58">
+<script>(function(){try{if(localStorage.getItem('admin-theme')!=='dark')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">&#129302; AI Coding Agent</div>
+  <div class="topright">
+    <nav id="nav" hidden>
+      <a href="index.html">Chat</a>
+      <a href="#dashboard" data-view="dashboard">Dashboard</a>
+      <a href="#users" data-view="users">Users &amp; access</a>
+      <a href="#logs" data-view="logs">Logs</a>
+      <a href="#usage" data-view="usage">Usage</a>
+      <a href="#" id="logoutlink" class="logout">Log out</a>
+    </nav>
+    <button type="button" class="themebtn" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme">&#9680;</button>
+  </div>
+</header>
+
+<main id="main"><div class="card"><p class="muted">Loading&hellip;</p></div></main>
+
+<footer class="foot">
+  <span>AI Coding Agent &middot; a llama.cpp front-end + guardrail admin &middot; standalone frontend &rarr; PHP API.</span>
+  <span class="copyright">&copy; 2026 AI Coding Agent. All rights reserved.</span>
+</footer>
+
+<!-- detail modal (logs) -->
+<div id="modal" class="modal" onclick="if(event.target===this)closeDetail()">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div id="m-meta" class="m-meta"></div>
+      <div class="row" style="flex:0 0 auto">
+        <button type="button" id="m-suspend" class="btn small danger" data-act="suspend-log-user" hidden>&#9209; Suspend user</button>
+        <button type="button" class="btn ghost small" onclick="closeDetail()">Close &#10005;</button>
+      </div>
+    </div>
+    <div id="m-body" class="chat"></div>
+    <div class="modal-foot">
+      <button type="button" class="btn ghost small" onclick="toggleRaw()">Show raw JSON</button>
+      <pre id="m-raw" class="rawbox" hidden></pre>
+    </div>
+  </div>
+</div>
+
+<div id="charttip"></div>
+<script src="app.js?v=58"></script>
+</body>
+</html>
