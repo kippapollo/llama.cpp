@@ -205,6 +205,21 @@ function account_change_password(string $id, string $current, string $new): arra
     return ['error' => 'Account not found.'];
 }
 
+// Admin resets a user's password (no current-password check). Returns ['ok'=>true] or ['error'=>..].
+function account_admin_set_password(string $id, string $new): array {
+    if (strlen($new) < 8) { return ['error' => 'New password must be at least 8 characters.']; }
+    $users = accounts_read();
+    foreach ($users as &$u) {
+        if (($u['id'] ?? '') === $id) {
+            $u['hash'] = password_hash($new, PASSWORD_DEFAULT);
+            unset($u);
+            return accounts_write($users) ? ['ok' => true] : ['error' => 'Could not save the new password.'];
+        }
+    }
+    unset($u);
+    return ['error' => 'Account not found.'];
+}
+
 // ---- per-account API tokens (for OpenAI-compatible clients like Continue) ----
 // Stored as a SHA-256 hash (the plaintext is shown once, at generation). One
 // token per account; regenerating replaces the old one.

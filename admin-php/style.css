@@ -480,3 +480,27 @@ body.chatpage .chatbar { display: block; width: 100%; max-width: 760px; margin: 
 .topbar nav .usermenu-pop a:hover { background: var(--panel2); color: var(--fg); }
 .topbar nav .usermenu-pop a.logout { color: #e5534b; }
 .topbar nav .usermenu-pop a.logout:hover { background: rgba(229,83,75,.12); color: #e5534b; }
+
+/* Top loading bar — page / API loading indicator (both chat and admin) */
+.loadbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--accent); box-shadow: 0 0 10px var(--accent), 0 0 4px var(--accent); z-index: 99999; opacity: 0; pointer-events: none; border-radius: 0 3px 3px 0; }
+.loadbar.on { opacity: 1; }
+
+/* Code-block "Render" button (HTML blocks) + sandboxed HTML preview modal */
+.cbbtns { display: inline-flex; align-items: center; gap: 6px; }
+.cbrender { display: inline-flex; align-items: center; background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; padding: 3px 9px; font-size: 11px; line-height: 1; cursor: pointer; }
+.cbrender .i { margin-right: 5px; }
+.cbrender:hover { color: var(--accent); border-color: var(--accent); }
+.htmlpreview { position: fixed; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; min-width: 320px; min-height: 220px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.5); }
+.htmlpreview.full { left: 0 !important; top: 0 !important; width: 100vw !important; height: 100vh !important; border-radius: 0; }
+.htmlpreview .hp-head { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--panel2); }
+.htmlpreview .hp-head strong { font-size: 14px; }
+.htmlpreview .hp-note { font-size: 11px; margin-right: auto; }
+.htmlpreview .hp-frame { flex: 1 1 auto; width: 100%; border: 0; background: #fff; }
+.htmlpreview .hp-resize { position: absolute; right: 0; bottom: 0; width: 18px; height: 18px; cursor: nwse-resize; z-index: 3; opacity: .6; background: linear-gradient(135deg, transparent 0 46%, var(--muted) 46% 54%, transparent 54% 66%, var(--muted) 66% 74%, transparent 74%); }
+.htmlpreview .hp-resize:hover { opacity: 1; }
+.htmlpreview.full .hp-resize { display: none; }
+
+/* Drag & drop file attach overlay (chat) */
+.dropzone { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9998; display: none; align-items: center; justify-content: center; background: rgba(20,28,42,.55); pointer-events: none; }
+.dropzone.show { display: flex; }
+.dz-inner { border: 2px dashed var(--accent); border-radius: 16px; padding: 30px 48px; font-size: 18px; font-weight: 600; color: #fff; background: rgba(20,28,42,.72); box-shadow: 0 10px 40px rgba(0,0,0,.4); }

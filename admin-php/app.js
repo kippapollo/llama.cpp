@@ -6,7 +6,7 @@
   var CSRF = '';
   var logRows = [], logSeen = {}, logPage = 1, logSize = 50, logFrom = '', logTo = '', logMin = '', logMax = '';
   var pendingLog = null; // set when navigating from Usage -> Logs for one user
-  var perfTimer = null, logsTimer = null;
+  var perfTimer = null, logsTimer = null, dashTimer = null;
   var HIST = 90, hist = { cpu: [], mem: [], gpu: [], srv: [] };
 
   // ---- helpers -------------------------------------------------------------
@@ -37,15 +37,42 @@
   function setText(id, t) { var e = document.getElementById(id); if (e) e.textContent = t; }
   function showError(err) { setMain('<div class="card"><div class="flash err">' + esc(err) + '</div></div>'); }
 
+  // ---- top loading bar (NProgress-style) -----------------------------------
+  var _busy = 0, _barEl = null, _barShow = null, _barHide = null;
+  function loadStart() {
+    _busy++;
+    if (_busy === 1 && !_barShow) {
+      _barShow = setTimeout(function () {                 // debounce: skip a flash for quick calls
+        _barShow = null;
+        if (!_barEl) { _barEl = document.createElement('div'); _barEl.className = 'loadbar'; document.body.appendChild(_barEl); }
+        var b = _barEl; if (_barHide) { clearTimeout(_barHide); _barHide = null; }
+        b.style.transition = 'none'; b.style.width = '6%'; b.classList.add('on'); void b.offsetWidth;
+        b.style.transition = 'width 8s cubic-bezier(.05,.7,.05,1), opacity .3s'; b.style.width = '85%';
+      }, 140);
+    }
+  }
+  function loadDone() {
+    if (_busy > 0) _busy--;
+    if (_busy !== 0) return;
+    if (_barShow) { clearTimeout(_barShow); _barShow = null; }
+    var b = _barEl;
+    if (b && b.classList.contains('on')) {
+      b.style.transition = 'width .25s ease, opacity .4s ease .2s'; b.style.width = '100%'; b.classList.remove('on');
+      _barHide = setTimeout(function () { if (_busy === 0 && b) { b.style.transition = 'none'; b.style.width = '0%'; } _barHide = null; }, 650);
+    }
+  }
   function api(action, opts) {
     opts = opts || {};
     var url = 'api.php?action=' + encodeURIComponent(action);
     if (opts.query) { for (var k in opts.query) { if (opts.query.hasOwnProperty(k)) url += '&' + k + '=' + encodeURIComponent(opts.query[k]); } }
     var init = { credentials: 'same-origin', headers: {} };
     if (opts.body) { init.method = 'POST'; init.headers['Content-Type'] = 'application/json'; init.headers['X-CSRF'] = CSRF; init.body = JSON.stringify(opts.body); }
-    return fetch(url, init).then(function (r) {
+    if (!opts.quiet) loadStart();
+    var p = fetch(url, init).then(function (r) {
       return r.json().then(function (j) { if (!r.ok) { throw (j && j.error) || ('HTTP ' + r.status); } return j; });
     });
+    if (!opts.quiet) { p = p.then(function (v) { loadDone(); return v; }, function (e) { loadDone(); throw e; }); }
+    return p;
   }
 
   // ---- theme / tooltip / modal (global handlers) ---------------------------
@@ -165,7 +192,7 @@
   }
   function redrawPerf() { drawGraph('cpugraph', hist.cpu, 'cpu'); drawGraph('memgraph', hist.mem, 'mem'); var g = document.getElementById('gpu-metric'); if (g && !g.hidden) drawGraph('gpugraph', hist.gpu, 'gpu'); drawGraph('srvgraph', hist.srv, 'srv'); }
   function pollStats() {
-    api('stats').then(function (s) {
+    api('stats', { quiet: true }).then(function (s) {
       if (!document.getElementById('cpugraph')) return;
       if (s.cpu != null) { pushHist(hist.cpu, s.cpu); setText('cpuval', s.cpu + '%'); }
       if (s.memTotal) { var used = s.memTotal - s.memFree, pct = Math.round(used / s.memTotal * 100); pushHist(hist.mem, pct); setText('memval', fmtBytes(used) + ' / ' + fmtBytes(s.memTotal) + ' (' + pct + '%)'); }
@@ -203,10 +230,10 @@
   }
   function pollStatus() {
     if (!document.getElementById('statustile')) return;
-    api('server_status').then(function (r) { paintServerStatus(r.health, r.ctl); }).catch(function () {});
+    api('server_status', { quiet: true }).then(function (r) { paintServerStatus(r.health, r.ctl); }).catch(function () {});
   }
   function startPerf() { hist = { cpu: [], mem: [], gpu: [], srv: [] }; pollStats(); pollStatus(); perfTimer = setInterval(function () { pollStats(); pollStatus(); }, 4000); }
-  function stopTimers() { if (perfTimer) { clearInterval(perfTimer); perfTimer = null; } if (logsTimer) { clearInterval(logsTimer); logsTimer = null; } if (typeof window.closeServerLog === 'function') window.closeServerLog(); }
+  function stopTimers() { if (perfTimer) { clearInterval(perfTimer); perfTimer = null; } if (logsTimer) { clearInterval(logsTimer); logsTimer = null; } if (dashTimer) { clearInterval(dashTimer); dashTimer = null; } if (typeof window.closeServerLog === 'function') window.closeServerLog(); }
   window.addEventListener('resize', function () { if (document.getElementById('cpugraph')) redrawPerf(); });
 
   // ---- auth views ----------------------------------------------------------
@@ -233,12 +260,32 @@
       '<input type="date" id="actto" class="actdate" value="' + esc(actTo) + '" title="To">' +
       '<button class="btn small ' + (actDays === 0 ? '' : 'ghost') + '" data-act="act-apply">Apply</button>';
   }
-  function reloadActivity() {
+  function reloadActivity(quiet) {
     var q = (actDays === 0 && actFrom && actTo) ? { from: actFrom, to: actTo } : { days: actDays };
-    api('activity', { query: q }).then(function (d) {
+    api('activity', { query: q, quiet: quiet }).then(function (d) {
       var c = document.getElementById('actchart'); if (c) c.innerHTML = svgBar(d.perday);
       var r = document.getElementById('actrange'); if (r) r.innerHTML = actRangeButtons();
     }).catch(function () {});
+  }
+  function accountsSubLine(ac) {
+    ac = ac || {};
+    return (ac.active || 0) + ' active' + (ac.admins ? ' &middot; ' + ac.admins + ' admin' : '') +
+      (ac.pending ? ' &middot; <span class="warn-tag">' + ac.pending + ' pending</span>' : '');
+  }
+  // Periodically refresh the dashboard counts (accounts, hosts, requests, log files)
+  // and the activity chart in place — without rebuilding the page or disturbing the
+  // live performance graphs, the server status tile, or any open modal.
+  function refreshDash() {
+    api('overview', { quiet: true }).then(function (o) {
+      if (!document.getElementById('dash-accounts')) return;   // navigated away
+      var ac = o.accounts || {};
+      setText('dash-accounts', ac.total);
+      var sub = document.getElementById('dash-accounts-sub'); if (sub) sub.innerHTML = accountsSubLine(ac);
+      setText('dash-hosts', o.allowedHosts);
+      setText('dash-requests', o.requestsToday);
+      setText('dash-logfiles', o.logFiles);
+    }).catch(function () {});
+    reloadActivity(true);                                      // requests-per-day chart, at the current range (quiet)
   }
   function renderDashboard() {
     stopTimers();
@@ -265,12 +312,12 @@
       setMain(
         '<h1>Dashboard</h1><div class="cards">' +
         '<div class="stat status-' + st + '" id="statustile">' + statusTileInner(o.health, sc) + '</div>' +
-        '<div class="stat"><div class="num">' + ac.total + '</div><div class="lbl">Accounts</div>' +
-        '<div class="muted" style="font-size:12px">' + ac.active + ' active' + (ac.admins ? ' · ' + ac.admins + ' admin' : '') + (ac.pending ? ' · <span class="warn-tag">' + ac.pending + ' pending</span>' : '') + '</div>' +
+        '<div class="stat"><div class="num" id="dash-accounts">' + ac.total + '</div><div class="lbl">Accounts</div>' +
+        '<div class="muted" id="dash-accounts-sub" style="font-size:12px">' + accountsSubLine(ac) + '</div>' +
         '<a href="#users">Manage &rarr;</a></div>' +
-        '<div class="stat"><div class="num">' + o.allowedHosts + '</div><div class="lbl">Allowed hosts</div><a href="#users">Manage &rarr;</a></div>' +
-        '<div class="stat"><div class="num">' + o.requestsToday + '</div><div class="lbl">Requests today</div><a href="#logs">View logs &rarr;</a></div>' +
-        '<div class="stat"><div class="num">' + o.logFiles + '</div><div class="lbl">Log files</div></div></div>' +
+        '<div class="stat"><div class="num" id="dash-hosts">' + o.allowedHosts + '</div><div class="lbl">Allowed hosts</div><a href="#users">Manage &rarr;</a></div>' +
+        '<div class="stat"><div class="num" id="dash-requests">' + o.requestsToday + '</div><div class="lbl">Requests today</div><a href="#logs">View logs &rarr;</a></div>' +
+        '<div class="stat"><div class="num" id="dash-logfiles">' + o.logFiles + '</div><div class="lbl">Log files</div></div></div>' +
         '<div class="card"><div class="row" style="justify-content:space-between;align-items:baseline;margin:0"><h2 style="margin:0">Machine performance <span class="muted" style="font-size:12px;font-weight:400">live</span></h2><span class="muted" id="perf-updated"></span></div>' +
         '<div class="perftiles">' + tile('CPU', 'cpuval', 'cpugraph') + tile('Memory', 'memval', 'memgraph') +
         '<div class="perftile" id="gpu-metric" hidden><div class="mhead"><span class="mlabel">GPU <span class="muted" id="gpuname"></span></span><span class="mval" id="gpuval">—</span></div><canvas class="graph" id="gpugraph"></canvas></div>' +
@@ -287,6 +334,7 @@
         launchModal + logModal
       );
       startPerf();
+      dashTimer = setInterval(refreshDash, 15000);   // live counts + activity every 15s
     }).catch(showError);
   }
   function srvMsg(m) { var e = document.getElementById('srvmsg'); if (e) e.textContent = m; }
@@ -306,7 +354,7 @@
   window.closeLaunchModal = function () { var m = document.getElementById('launchmodal'); if (m) m.classList.remove('open'); };
   var srvLogTimer = null, srvLogOffset = 0;
   function pollServerLog(first) {
-    api('server_log', { query: { from: srvLogOffset } }).then(function (r) {
+    api('server_log', { query: { from: srvLogOffset }, quiet: true }).then(function (r) {
       var pre = document.getElementById('srvlogpre'); if (!pre) return;
       if (!r.exists) { pre.textContent = '(no console log yet — start the server from this dashboard to capture its output)'; srvLogOffset = 0; return; }
       if (first) pre.textContent = '';
@@ -363,7 +411,7 @@
         var roleBtn = a.role === 'admin'
           ? '<button class="btn small ghost" data-act="acct-revoke-admin" data-id="' + id + '" data-name="' + esc(a.name) + '" title="Remove administrator access">Revoke admin</button> '
           : '<button class="btn small" data-act="acct-make-admin" data-id="' + id + '" data-name="' + esc(a.name) + '" title="Grant admin-panel access (no separate password login)">Make admin</button> ';
-        acts = roleBtn + '<button class="btn small ghost" data-act="acct-allow" data-id="' + id + '" title="Add this IP + MAC to the access-allow list">Allow host</button> <button class="btn small ghost" data-act="acct-suspend" data-id="' + id + '">Suspend</button> <button class="btn small danger" data-act="acct-delete" data-id="' + id + '" data-name="' + esc(a.name) + '">Delete</button>';
+        acts = roleBtn + '<button class="btn small ghost" data-act="acct-allow" data-id="' + id + '" title="Add this IP + MAC to the access-allow list">Allow host</button> <button class="btn small ghost" data-act="acct-reset-pw" data-id="' + id + '" data-name="' + esc(a.name) + '" title="Set a new password for this account">Reset password</button> <button class="btn small ghost" data-act="acct-suspend" data-id="' + id + '">Suspend</button> <button class="btn small danger" data-act="acct-delete" data-id="' + id + '" data-name="' + esc(a.name) + '">Delete</button>';
       } else {
         acts = '<button class="btn small danger" data-act="acct-delete" data-id="' + id + '" data-name="' + esc(a.name) + '">Delete</button>';
       }
@@ -408,6 +456,30 @@
       '<p class="muted" style="margin:0 0 20px">Chat login accounts and the API access-allow list, in one place.</p>' +
       accountsSection(flash) + hostsSection()
     );
+  }
+  function openResetPassword(id, name) {
+    var ov = document.createElement('div'); ov.className = 'uidlg-overlay';
+    ov.innerHTML = '<div class="uidlg"><div class="uidlg-title">Reset password for ' + esc(name || id) + '</div>' +
+      '<form id="rpform" autocomplete="off">' +
+      '<label>New password <input type="password" name="p1" autocomplete="new-password" required></label>' +
+      '<label>Confirm password <input type="password" name="p2" autocomplete="new-password" required></label>' +
+      '<div id="rpmsg"></div>' +
+      '<div class="uidlg-btns"><button type="button" class="btn ghost" data-rp="cancel">Cancel</button><button type="submit" class="btn">Set password</button></div>' +
+      '</form></div>';
+    document.body.appendChild(ov);
+    function close() { if (ov.parentNode) ov.parentNode.removeChild(ov); }
+    ov.addEventListener('click', function (e) { if (e.target === ov || (e.target.getAttribute && e.target.getAttribute('data-rp') === 'cancel')) close(); });
+    ov.querySelector('#rpform').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = this, p1 = f.p1.value, p2 = f.p2.value, msg = ov.querySelector('#rpmsg');
+      if (p1.length < 8) { msg.innerHTML = '<div class="flash err">Password must be at least 8 characters.</div>'; return; }
+      if (p1 !== p2) { msg.innerHTML = '<div class="flash err">Passwords do not match.</div>'; return; }
+      msg.innerHTML = '<div class="muted">Saving&hellip;</div>';
+      api('account_action', { body: { act: 'set_password', id: id, password: p1 } })
+        .then(function (r) { accountsCache = r.accounts || accountsCache; msg.innerHTML = '<div class="flash ok">Password reset for ' + esc(name || id) + '.</div>'; setTimeout(close, 900); })
+        .catch(function (er) { msg.innerHTML = '<div class="flash err">' + esc(er) + '</div>'; });
+    });
+    var inp = ov.querySelector('input'); if (inp) inp.focus();
   }
   function acctAction(act, id) {
     api('account_action', { body: { act: act, id: id } }).then(function (r) {
@@ -563,7 +635,7 @@
   function pollLogs() {
     if (!document.getElementById('logbody')) return;
     var after = logRows.length ? logRows[0].ts : '';
-    api('logs', { query: { from: logFrom, to: logTo, after: after } }).then(function (d) {
+    api('logs', { query: { from: logFrom, to: logTo, after: after }, quiet: true }).then(function (d) {
       if (!document.getElementById('logbody')) return;
       var added = 0;
       d.rows.slice().reverse().forEach(function (r) { if (logSeen[r.sig]) return; logSeen[r.sig] = 1; logRows.unshift(r); added++; });
@@ -646,6 +718,7 @@
     var act = t.getAttribute('data-act');
     if (act === 'detail') { e.preventDefault(); openDetail(t.getAttribute('data-sig')); }
     else if (act === 'logout') { e.preventDefault(); doLogout(); }
+    else if (act === 'logout-denied') { e.preventDefault(); api('logout', { body: {} }).then(showLoggedOut).catch(showLoggedOut); }
     else if (act === 'user-add') { e.preventDefault(); openHostModal(null); }
     else if (act === 'user-edit') { e.preventDefault(); openHostModal(t.getAttribute('data-ip')); }
     else if (act === 'user-delete') { e.preventDefault(); var uip = t.getAttribute('data-ip'), ual = t.getAttribute('data-alias'); uiConfirm('Remove ' + ual + ' (' + uip + ') from the allowed hosts?', { title: 'Remove host', danger: true, okText: 'Remove' }).then(function (ok) { if (ok) saveUser({ act: 'delete', ip: uip }); }); }
@@ -664,6 +737,7 @@
     else if (act === 'acct-make-admin') { e.preventDefault(); var ma = t.getAttribute('data-id'), mn = t.getAttribute('data-name'); uiConfirm('Make “' + mn + '” an administrator? They will have full access to this admin panel.', { title: 'Grant admin', okText: 'Make admin' }).then(function (ok) { if (ok) acctAction('make_admin', ma); }); }
     else if (act === 'acct-revoke-admin') { e.preventDefault(); var ra = t.getAttribute('data-id'), rn = t.getAttribute('data-name'); uiConfirm('Revoke administrator access from “' + rn + '”?', { title: 'Revoke admin', danger: true, okText: 'Revoke' }).then(function (ok) { if (ok) acctAction('revoke_admin', ra); }); }
     else if (act === 'acct-allow') { e.preventDefault(); acctAction('allow_host', t.getAttribute('data-id')); }
+    else if (act === 'acct-reset-pw') { e.preventDefault(); openResetPassword(t.getAttribute('data-id'), t.getAttribute('data-name')); }
     else if (act === 'acct-suspend') { e.preventDefault(); acctAction('suspend', t.getAttribute('data-id')); }
     else if (act === 'acct-reject') { e.preventDefault(); var rja = t.getAttribute('data-id'), rjn = t.getAttribute('data-name'); uiConfirm('Reject and delete the signup “' + rjn + '”?', { title: 'Reject signup', danger: true, okText: 'Reject' }).then(function (ok) { if (ok) acctAction('reject', rja); }); }
     else if (act === 'acct-delete') { e.preventDefault(); var da = t.getAttribute('data-id'), dn = t.getAttribute('data-name'); uiConfirm('Delete account “' + dn + '”? Their saved chats are not removed.', { title: 'Delete account', danger: true, okText: 'Delete' }).then(function (ok) { if (ok) acctAction('delete', da); }); }
@@ -727,11 +801,27 @@
     computeUsageRange();
     route();
   }
+  function showHostDenied(s) {
+    var loggedIn = !!(s && (s.authed || s.user));   // only offer Log out when there's actually a session to clear
+    document.getElementById('nav').hidden = true;
+    setMain('<div class="authwrap"><div class="card narrow"><h1>Access denied</h1>' +
+      '<p class="muted">The admin panel is available from the server itself (<code>http://localhost/admin</code>), or from the exact device (IP) registered to your administrator account — sign in through the chat there, then use the Admin link. This device isn’t authorized.</p>' +
+      '<p><a class="btn ghost" href="index.html">Go to chat</a>' +
+      (loggedIn ? ' <button class="btn ghost" data-act="logout-denied">Log out</button>' : '') +
+      '</p></div></div>');
+  }
+  function showLoggedOut() {
+    document.getElementById('nav').hidden = true;
+    setMain('<div class="authwrap"><div class="card narrow"><h1>Logged out</h1>' +
+      '<p class="muted">Your admin session has been cleared. The admin panel is only available from the server (<code>http://localhost/admin</code>).</p>' +
+      '<p><a class="btn ghost" href="index.html">Go to chat</a></p></div></div>');
+  }
   function boot() {
     stopTimers();
     api('session').then(function (s) {
       CSRF = s.csrf;
-      if (s.isAdmin) enterApp();            // admin password OR admin-role chat user — no extra login
+      if (s.hostAllowed === false) { showHostDenied(s); return; }   // admin panel is localhost-only — no login form off-server
+      if (s.isAdmin) enterApp();             // admin password OR admin-role chat user — no extra login
       else if (s.needsSetup) showSetup();
       else showLogin();
     }).catch(function (e) { showError('Cannot reach API: ' + e); });

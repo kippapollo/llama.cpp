@@ -28,7 +28,28 @@ function is_admin() {
     }
     return false;
 }
-function require_auth_api() { if (!is_admin()) { fail('unauthorized', 401); } }
+// Who may use the admin panel, and from where:
+//   - localhost (127.0.0.1/::1): any admin — including the initial admin-password login.
+//   - a signed-up account promoted to admin (role=admin, active): ONLY from the exact IP
+//     registered to that account (its own device). Being signed in as an admin from some
+//     other IP is not enough — that IP must belong to the admin account.
+//   - the initial admin-password login (not a signed-up account): localhost ONLY.
+function admin_host_ok() {
+    $ip = client_ip();
+    if ($ip === '' || $ip === '127.0.0.1' || $ip === '::1') { return true; }
+    if (!empty($_SESSION['user'])) {                       // a signed-in admin account, from its OWN registered IP
+        $u = account_find((string) $_SESSION['user']);
+        if ($u && ($u['status'] ?? '') === 'active' && ($u['role'] ?? '') === 'admin'
+            && trim((string) ($u['ip'] ?? '')) !== '' && trim((string) ($u['ip'] ?? '')) === $ip) {
+            return true;
+        }
+    }
+    return false;                                          // admin-password login & everyone else: localhost only
+}
+function require_auth_api() {
+    if (!admin_host_ok()) { fail('The admin panel is only available from the server (localhost) or from the device (IP) registered to your administrator account.', 403); }
+    if (!is_admin()) { fail('unauthorized', 401); }
+}
 // Chat endpoints: allow either a logged-in chat user or the admin.
 function require_user_api() { if (empty($_SESSION['user']) && empty($_SESSION['authed'])) { fail('unauthorized', 401); } }
 function client_ip() { return (string) ($_SERVER['REMOTE_ADDR'] ?? ''); }
@@ -64,6 +85,7 @@ case 'session':
         'authed'     => !empty($_SESSION['authed']),      // admin-password session
         'user'       => current_user_public(),            // chat user {id,name,role} or null
         'isAdmin'    => is_admin(),                        // admin via password OR admin-role user
+        'hostAllowed'=> admin_host_ok(),                   // is this device allowed to use the admin panel?
         'needsSetup' => !admin_password_is_set(),          // admin first-run
         'csrf'       => csrf_token(),
     ]);
@@ -91,7 +113,8 @@ case 'user_login':
 
 case 'user_logout':
     require_post(); require_csrf($body);
-    unset($_SESSION['user']);
+    $_SESSION = [];            // clear the whole session — covers both a chat user AND the admin-password login
+    session_destroy();
     out(['ok' => true]);
 
 case 'user_password':   // a signed-in chat user changes their own password
@@ -156,12 +179,17 @@ case 'account_action':
     }
     elseif ($act === 'make_admin') { account_set_role($id, 'admin'); }
     elseif ($act === 'revoke_admin') { account_set_role($id, 'user'); }
+    elseif ($act === 'set_password') {
+        $r = account_admin_set_password($id, (string) ($body['password'] ?? ''));
+        if (!empty($r['error'])) { fail($r['error']); }
+    }
     elseif ($act === 'reject' || $act === 'delete') { account_delete($id); }
     else { fail('bad act'); }
     out(['ok' => true, 'warn' => $warn, 'accounts' => array_map('account_public', accounts_read())]);
 
 case 'setup':
     require_post(); require_csrf($body);
+    if (!admin_host_ok()) { fail('The admin panel is only available from the server itself (localhost).', 403); }
     if (admin_password_is_set()) { fail('already configured'); }
     $pw = (string) ($body['password'] ?? '');
     if (strlen($pw) < 8) { fail('Password must be at least 8 characters.'); }
@@ -170,6 +198,7 @@ case 'setup':
 
 case 'login':
     require_post(); require_csrf($body);
+    if (!admin_host_ok()) { fail('The admin panel is only available from the server itself (localhost).', 403); }
     if (verify_admin_password((string) ($body['password'] ?? ''))) {
         session_regenerate_id(true);
         $_SESSION['authed'] = true;

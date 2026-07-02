@@ -1,16 +1,13 @@
-# Restrict the guardrail admin panel to the local machine.
-# This panel controls who may access llama-server, so do not expose it on the
-# LAN. To allow specific remote admins, replace "Require local" with explicit
-# "Require ip <addr>" lines (and serve over HTTPS).
-Require local
-
-# Exception: the OpenAI-compatible token endpoint (v1.php) is reachable from the
-# network so editor clients (Continue, etc.) can connect. It is NOT protected by
-# "Require local" — instead it authenticates every request with a per-account
-# bearer token AND enforces the same host allow-list as the browser chat proxy.
-<Files "v1.php">
-    Require all granted
-</Files>
+# Access to the guardrail panel is open to any host that can reach this server.
+# The panel is gated by the admin password; the chat is gated by account login
+# plus the host allow-list; the token API (v1.php) is gated by a bearer token
+# plus the host allow-list. IMPORTANT: because credentials/tokens are sent in
+# the clear over plain HTTP, serve this over HTTPS if it is reachable beyond a
+# trusted LAN/VPN. To lock it back down to specific networks, replace
+# "Require all granted" below with e.g.:
+#     Require local
+#     Require ip 192.168.129.0/24 198.18.64.0/24
+Require all granted
 
 # Some Apache/PHP setups strip the Authorization header before PHP sees it;
 # make sure the bearer token reaches v1.php.
@@ -20,6 +17,14 @@ Require local
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
 CGIPassAuth On
+
+# Always revalidate the HTML entry pages so a new deploy is picked up without a
+# manual hard-refresh. The ?v= query strings still cache-bust the JS/CSS.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
 
 # Defense in depth: never serve dotfiles (e.g. a stray .admin-password.hash)
 # or this file as static content.
