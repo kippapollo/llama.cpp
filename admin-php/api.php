@@ -101,6 +101,21 @@ case 'user_password':   // a signed-in chat user changes their own password
     if (!empty($r['error'])) { fail($r['error']); }
     out(['ok' => true]);
 
+case 'user_token_status':   // does the signed-in user have an API token? (no plaintext)
+    if (empty($_SESSION['user'])) { fail('not signed in', 401); }
+    out(account_token_info((string) $_SESSION['user']));
+
+case 'user_token':   // a signed-in user generates or revokes their own API token
+    require_post(); require_csrf($body);
+    if (empty($_SESSION['user'])) { fail('not signed in', 401); }
+    $uid = (string) $_SESSION['user'];
+    $op = (string) ($body['op'] ?? '');
+    if ($op === 'generate') { $r = account_generate_token($uid); }
+    elseif ($op === 'revoke') { $r = account_revoke_token($uid); }
+    else { fail('unknown op'); }
+    if (!empty($r['error'])) { fail($r['error']); }
+    out($r + account_token_info($uid));   // includes plaintext 'token' on generate (shown once)
+
 // ---- per-user chat history -------------------------------------------------
 case 'chats_load':
     require_user_api();

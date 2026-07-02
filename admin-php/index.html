@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Coding Agent</title>
 <link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=54">
+<link rel="stylesheet" href="style.css?v=60">
 <script>(function(){try{if(localStorage.getItem('admin-theme')!=='dark')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 </head>
 <body class="chatpage">
@@ -16,10 +16,17 @@
   </div>
   <div class="topright">
     <nav id="nav" hidden>
-      <span id="whoami" class="whoami"></span>
       <a href="admin.html#dashboard" id="adminlink" hidden>Admin</a>
-      <a href="#" id="pwlink">Change password</a>
-      <a href="#" id="logoutlink" class="logout">Log out</a>
+      <div class="usermenu" id="usermenu">
+        <button type="button" id="userbtn" class="userbtn" aria-haspopup="true" aria-expanded="false" title="Account menu">
+          <span id="whoami" class="whoami"></span><span class="caret">&#9662;</span>
+        </button>
+        <div class="usermenu-pop" id="usermenupop" role="menu">
+          <a href="#" id="tokenlink" role="menuitem">&#128273;&nbsp; API token</a>
+          <a href="#" id="pwlink" role="menuitem">&#128274;&nbsp; Change password</a>
+          <a href="#" id="logoutlink" class="logout" role="menuitem">&#8617;&nbsp; Log out</a>
+        </div>
+      </div>
     </nav>
     <button type="button" class="themebtn" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme">&#9680;</button>
   </div>
@@ -69,6 +76,6 @@
 <div id="auth" class="authwrap" hidden><div class="card narrow"><div id="authbody"></div></div></div>
 
 <div id="charttip"></div>
-<script src="chat.js?v=54"></script>
+<script src="chat.js?v=62"></script>
 </body>
 </html>

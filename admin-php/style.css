@@ -459,3 +459,24 @@ body.chatpage .chatbar { display: block; width: 100%; max-width: 760px; margin: 
 .badge.ok { background: rgba(52,211,153,.15); color: var(--ok); }
 .badge.warn { background: rgba(251,191,36,.18); color: var(--warn); }
 .badge.muted { background: var(--panel2); color: var(--muted); }
+
+/* API-token modal (self-service editor tokens) */
+.tokbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tokrow{margin:8px 0}
+.tokval{display:flex;gap:8px;align-items:center;margin:10px 0;flex-wrap:wrap}
+.tokval code{flex:1 1 260px;min-width:0;overflow:auto;padding:8px 10px;background:rgba(127,127,127,.14);border-radius:6px;font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+.tokcfg{background:rgba(127,127,127,.14);padding:10px;border-radius:6px;overflow:auto;font-family:ui-monospace,Consolas,monospace;font-size:12px;white-space:pre;margin:6px 0;max-height:200px}
+
+/* Account dropdown menu (username → API token / Change password / Log out) */
+.topbar nav .usermenu { position: relative; display: inline-block; margin-left: 20px; }
+.topbar nav .userbtn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; cursor: pointer; color: var(--muted); font: inherit; padding: 6px 10px; border-radius: 8px; transition: color .15s, background .15s; }
+.topbar nav .userbtn:hover, .usermenu.open .userbtn { background: var(--panel2); color: var(--fg); }
+.topbar nav .userbtn .whoami { margin: 0; }
+.topbar nav .userbtn .caret { font-size: 10px; opacity: .7; transition: transform .15s; }
+.usermenu.open .userbtn .caret { transform: rotate(180deg); }
+.topbar nav .usermenu-pop { position: absolute; right: 0; top: calc(100% + 8px); min-width: 200px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.28); padding: 6px; display: none; z-index: 60; }
+.usermenu.open .usermenu-pop { display: block; }
+.topbar nav .usermenu-pop a { display: block; margin: 0; padding: 9px 12px; border: 0; border-radius: 7px; color: var(--fg); white-space: nowrap; font-size: 14px; }
+.topbar nav .usermenu-pop a:hover { background: var(--panel2); color: var(--fg); }
+.topbar nav .usermenu-pop a.logout { color: #e5534b; }
+.topbar nav .usermenu-pop a.logout:hover { background: rgba(229,83,75,.12); color: #e5534b; }

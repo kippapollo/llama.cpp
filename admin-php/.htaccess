@@ -4,6 +4,23 @@
 # "Require ip <addr>" lines (and serve over HTTPS).
 Require local
 
+# Exception: the OpenAI-compatible token endpoint (v1.php) is reachable from the
+# network so editor clients (Continue, etc.) can connect. It is NOT protected by
+# "Require local" — instead it authenticates every request with a per-account
+# bearer token AND enforces the same host allow-list as the browser chat proxy.
+<Files "v1.php">
+    Require all granted
+</Files>
+
+# Some Apache/PHP setups strip the Authorization header before PHP sees it;
+# make sure the bearer token reaches v1.php.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+CGIPassAuth On
+
 # Defense in depth: never serve dotfiles (e.g. a stray .admin-password.hash)
 # or this file as static content.
 <FilesMatch "^\.">

@@ -205,6 +205,58 @@ function account_change_password(string $id, string $current, string $new): arra
     return ['error' => 'Account not found.'];
 }
 
+// ---- per-account API tokens (for OpenAI-compatible clients like Continue) ----
+// Stored as a SHA-256 hash (the plaintext is shown once, at generation). One
+// token per account; regenerating replaces the old one.
+
+function account_token_info(string $id): array {
+    $u = account_find($id);
+    if (!$u) { return ['has' => false, 'created' => '']; }
+    $has = trim((string) ($u['token_hash'] ?? '')) !== '';
+    return ['has' => $has, 'created' => $has ? (string) ($u['token_created'] ?? '') : ''];
+}
+
+function account_generate_token(string $id): array {
+    $plain = 'sk-guard-' . rtrim(strtr(base64_encode(random_bytes(24)), '+/', '-_'), '=');
+    $when = date('Y-m-d H:i');
+    $users = accounts_read();
+    foreach ($users as &$u) {
+        if (($u['id'] ?? '') === $id) {
+            $u['token_hash'] = hash('sha256', $plain);
+            $u['token_created'] = $when;
+            unset($u);
+            return accounts_write($users) ? ['ok' => true, 'token' => $plain, 'created' => $when] : ['error' => 'Could not save the token.'];
+        }
+    }
+    unset($u);
+    return ['error' => 'Account not found.'];
+}
+
+function account_revoke_token(string $id): array {
+    $users = accounts_read();
+    $changed = false;
+    foreach ($users as &$u) {
+        if (($u['id'] ?? '') === $id) { unset($u['token_hash'], $u['token_created']); $changed = true; }
+    }
+    unset($u);
+    if (!$changed) { return ['error' => 'Account not found.']; }
+    return accounts_write($users) ? ['ok' => true] : ['error' => 'Could not update the account.'];
+}
+
+// Resolve a presented bearer token to its (active) account, or null. Constant-time.
+function account_by_token(string $token): ?array {
+    $token = trim($token);
+    if ($token === '') { return null; }
+    $h = hash('sha256', $token);
+    foreach (accounts_read() as $u) {
+        $th = trim((string) ($u['token_hash'] ?? ''));
+        if ($th !== '' && hash_equals($th, $h)) {
+            return (($u['status'] ?? '') === 'active') ? $u : null;   // token valid only while the account is active
+        }
+    }
+    return null;
+}
+
 function account_set_role(string $id, string $role): bool {
     if ($role !== 'admin' && $role !== 'user') { return false; }
     $users = accounts_read();

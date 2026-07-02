@@ -71,6 +71,61 @@
     });
     var inp = ov.querySelector('input'); if (inp) inp.focus();
   }
+  function openApiToken() {
+    var apiBase = location.origin + location.pathname.replace(/[^/]*$/, '') + 'v1.php';
+    function snippet(token) {
+      return 'name: Local Config\n' +
+        'version: 1.0.0\n' +
+        'schema: v1\n' +
+        'models:\n' +
+        '  - name: Coding Agent\n' +
+        '    provider: openai\n' +
+        '    model: coder\n' +
+        '    apiBase: ' + apiBase + '\n' +
+        '    apiKey: ' + (token || '<your token>') + '\n' +
+        '    roles:\n' +
+        '      - chat\n' +
+        '      - edit\n' +
+        '      - apply\n' +
+        '    capabilities:\n' +
+        '      - tool_use\n' +
+        '    templateMessages: true';
+    }
+    var ov = document.createElement('div'); ov.className = 'uidlg-overlay';
+    ov.innerHTML = '<div class="uidlg" style="max-width:580px"><div class="uidlg-title">API token for code editors</div>' +
+      '<div id="tokbody"><div class="muted">Loading&hellip;</div></div>' +
+      '<div class="uidlg-btns"><button type="button" class="btn ghost" data-tok="close">Close</button></div></div>';
+    document.body.appendChild(ov);
+    function close() { if (ov.parentNode) ov.parentNode.removeChild(ov); }
+    ov.addEventListener('click', function (e) { if (e.target === ov || (e.target.getAttribute && e.target.getAttribute('data-tok') === 'close')) close(); });
+    var body = ov.querySelector('#tokbody');
+    function renderStatus(st) {
+      var has = st && st.has;
+      body.innerHTML =
+        '<p class="muted">Generate a personal token to connect a code editor (e.g. the Continue VS Code extension) to this server. Requests are attributed to your account and follow the same access rules as the chat.</p>' +
+        '<div class="tokrow"><strong>Status:</strong> ' + (has ? '<span class="flash ok" style="display:inline-block;padding:2px 8px">Active</span> <span class="muted">created ' + esc(st.created || '') + '</span>' : '<span class="muted">no token yet</span>') + '</div>' +
+        '<div class="tokbtns"><button type="button" class="btn" data-tok="gen">' + (has ? 'Regenerate' : 'Generate token') + '</button>' +
+        (has ? '<button type="button" class="btn ghost danger" data-tok="revoke">Revoke</button>' : '') + '</div>' +
+        '<details style="margin-top:12px"><summary class="muted">Editor setup (Continue <code>config.yaml</code>)</summary><pre class="tokcfg">' + esc(snippet(null)) + '</pre></details>';
+    }
+    function showToken(token) {
+      body.innerHTML =
+        '<div class="flash ok">New token created — copy it now. It will <b>not</b> be shown again.</div>' +
+        '<div class="tokval"><code id="toktext">' + esc(token) + '</code><button type="button" class="btn small" data-tok="copytoken">Copy</button></div>' +
+        '<p class="muted" style="margin:12px 0 4px">Continue <code>config.yaml</code>:</p>' +
+        '<pre class="tokcfg" id="tokcfg">' + esc(snippet(token)) + '</pre>' +
+        '<div class="tokbtns"><button type="button" class="btn ghost small" data-tok="copycfg">Copy config</button></div>';
+    }
+    function load() { api('user_token_status').then(renderStatus).catch(function (er) { body.innerHTML = '<div class="flash err">' + esc(er) + '</div>'; }); }
+    body.addEventListener('click', function (e) {
+      var act = e.target.getAttribute && e.target.getAttribute('data-tok'); if (!act) return;
+      if (act === 'gen') { e.target.disabled = true; api('user_token', { body: { op: 'generate' } }).then(function (r) { showToken(r.token); }).catch(function (er) { load(); uiAlert(String(er), { title: 'Token' }); }); }
+      else if (act === 'revoke') { uiDialog({ message: 'Revoke your API token? Any editor using it will stop working until you generate a new one.', title: 'Revoke token', danger: true, okText: 'Revoke' }).then(function (ok) { if (ok) api('user_token', { body: { op: 'revoke' } }).then(load).catch(function (er) { uiAlert(String(er), { title: 'Token' }); }); }); }
+      else if (act === 'copytoken') { copyText(el('toktext').textContent, e.target); }
+      else if (act === 'copycfg') { copyText(el('tokcfg').textContent, e.target); }
+    });
+    load();
+  }
   function copyText(text, btn) {
     var orig = btn ? btn.innerHTML : null;
     function done() { if (btn) { btn.innerHTML = '&#10003; Copied'; btn.className += ' done'; setTimeout(function () { btn.innerHTML = orig; btn.className = btn.className.replace(/\s*done/, ''); }, 1300); } }
@@ -486,6 +541,22 @@
   // ---- events --------------------------------------------------------------
   document.addEventListener('click', function (e) {
     var t = e.target;
+    // account dropdown (username → API token / Change password / Log out)
+    var ubtn = t.closest ? t.closest('#userbtn') : null;
+    var um = el('usermenu');
+    if (ubtn) {
+      e.preventDefault();
+      if (um) {
+        var isOpen = um.classList.contains('open');
+        if (isOpen) um.classList.remove('open'); else um.classList.add('open');
+        ubtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      }
+      return;
+    }
+    if (um && um.classList.contains('open')) {   // any other click closes it; the item handlers below still run
+      um.classList.remove('open');
+      var _ub = el('userbtn'); if (_ub) _ub.setAttribute('aria-expanded', 'false');
+    }
     if (t.id === 'sidebtn' || (t.closest && t.closest('#sidebtn'))) { setSidebar(!document.body.classList.contains('sb-collapsed')); return; }
     var authTab = t.closest ? t.closest('[data-authtab]') : null;
     if (authTab) { e.preventDefault(); showAuthUser(authTab.getAttribute('data-authtab')); return; }
@@ -493,6 +564,7 @@
     if (t.id === 'attachbtn') { el('fileinput').click(); return; }
     if (t.id === 'scrolldown') { var c = el('chatlog'); if (c) c.scrollTop = c.scrollHeight; updateScrollDown(); return; }
     if (t.id === 'pwlink') { e.preventDefault(); openChangePassword(); return; }
+    if (t.id === 'tokenlink') { e.preventDefault(); openApiToken(); return; }
     var thinkHead = t.closest ? t.closest('[data-act="toggle-think"]') : null;
     if (thinkHead) { var tb = thinkHead.closest('.thinkbox'); if (tb) tb.className = (tb.className.indexOf('open') >= 0) ? 'thinkbox' : 'thinkbox open'; return; }
     var copyBtn = t.closest ? t.closest('[data-copy]') : null;
